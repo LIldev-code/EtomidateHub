@@ -1,27 +1,29 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Message from "@/models/Message";
-import { sendContactNotification } from "@/lib/mailer";
 
 export async function POST(request) {
   try {
     await dbConnect();
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, replyMethod, replyHandle, subject, message } = body;
 
-    if (!name || !email || !message) {
+    if (!message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    const method = ["telegram", "whatsapp"].includes(replyMethod) ? replyMethod : "none";
+    if (method !== "none" && !replyHandle) {
+      return NextResponse.json({ error: "Missing reply contact" }, { status: 400 });
+    }
+
     await Message.create({
-      name,
-      email,
+      name: name || "Anonymous",
+      replyMethod: method,
+      replyHandle: replyHandle || "",
       subject: subject || "General Inquiry",
       message,
     });
-
-    // Send email notification (non-blocking)
-    sendContactNotification({ name, email, subject, message }).catch(() => {});
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch {

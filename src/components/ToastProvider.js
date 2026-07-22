@@ -8,14 +8,14 @@ export default function ToastProvider() {
       toastOptions={{
         duration: 3000,
         style: {
-          background: "#1a1a1a",
-          border: "1px solid #00d4aa",
-          color: "#fff",
+          background: "#ffffff",
+          border: "1px solid #f59e0b",
+          color: "#374151",
           fontSize: "14px",
           borderRadius: "12px",
           padding: "12px 16px",
         },
-        success: { iconTheme: { primary: "#22c55e", secondary: "#fff" } },
+        success: { iconTheme: { primary: "#f59e0b", secondary: "#fff" } },
         error: { iconTheme: { primary: "#ef4444", secondary: "#fff" } },
       }}
     />

@@ -1,43 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none">
-  <!-- Modern crystal/shield icon with purple gradient -->
-  <g transform="translate(4, 2)">
-    <!-- Outer shield/crystal shape -->
-    <path d="M22 2L34 10L34 26L22 34L10 26L10 10Z" stroke="url(#gradient1)" stroke-width="2.5" fill="none"/>
+  <!-- Modern atom/molecule icon -->
+  <g transform="translate(4, 4)">
+    <!-- Outer ring -->
+    <circle cx="20" cy="20" r="18" stroke="url(#gradient1)" stroke-width="2.5" fill="none"/>
     
-    <!-- Inner glow -->
-    <path d="M22 6L30 11L30 24L22 29L14 24L14 11Z" fill="url(#gradient2)" opacity="0.4"/>
+    <!-- Orbital paths -->
+    <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="url(#gradient1)" stroke-width="1.5" opacity="0.55"/>
+    <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="url(#gradient1)" stroke-width="1.5" opacity="0.55" transform="rotate(60 20 20)"/>
+    <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="url(#gradient1)" stroke-width="1.5" opacity="0.55" transform="rotate(120 20 20)"/>
     
-    <!-- Center crystal -->
-    <path d="M22 12L18 15L18 21L22 24L26 21L26 15Z" fill="url(#gradient1)" opacity="0.9"/>
+    <!-- Nucleus -->
+    <circle cx="20" cy="20" r="4.5" fill="url(#gradient1)"/>
     
-    <!-- Light reflections -->
-    <path d="M19 10L22 8L25 10L24 12L20 12Z" fill="#00d4aa" opacity="0.7"/>
-    <circle cx="17" cy="14" r="1.2" fill="#ffffff" opacity="0.9"/>
-    <circle cx="27" cy="18" r="0.9" fill="#ffffff" opacity="0.6"/>
+    <!-- Small electrons -->
+    <circle cx="20" cy="5" r="1.6" fill="#f59e0b"/>
+    <circle cx="7" cy="26" r="1.6" fill="#ea7a17"/>
+    <circle cx="33" cy="26" r="1.6" fill="#f59e0b"/>
     
-    <!-- Sparkle accents -->
-    <path d="M10 10L12 7L14 10L12 13Z" fill="#00d4aa" opacity="0.6"/>
-    <path d="M30 10L32 7L34 10L32 13Z" fill="#00d4aa" opacity="0.6"/>
-    <path d="M10 26L12 29L14 26L12 23Z" fill="#00d4aa" opacity="0.6"/>
-    <path d="M30 26L32 29L34 26L32 23Z" fill="#00d4aa" opacity="0.6"/>
-    
-    <!-- Gradients -->
+    <!-- Gradient definition -->
     <defs>
-      <linearGradient id="gradient1" x1="10" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#00d4aa"/>
-        <stop offset="1" stop-color="#00b894"/>
-      </linearGradient>
-      <linearGradient id="gradient2" x1="14" y1="6" x2="30" y2="29" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#00d4aa"/>
-        <stop offset="1" stop-color="#00d4aa"/>
+      <linearGradient id="gradient1" x1="2" y1="2" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#f59e0b"/>
+        <stop offset="1" stop-color="#ea7a17"/>
       </linearGradient>
     </defs>
   </g>
   
   <!-- Brand text -->
-  <text x="50" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#111827" letter-spacing="-0.02em">Etomidate</text>
-  <text x="50" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="url(#gradient1)" letter-spacing="-0.02em">Shop</text>
-  <text x="125" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#00b894" letter-spacing="0.08em">.com</text>
+  <text x="52" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#1f2937" letter-spacing="-0.02em">Etomidate</text>
+  <text x="52" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#f59e0b" letter-spacing="-0.02em">Site</text>
+  <text x="100" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#ea7a17" letter-spacing="0.08em">.com</text>
 </svg>
 
 

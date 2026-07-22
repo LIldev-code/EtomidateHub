@@ -6,11 +6,13 @@ import { FiMail, FiPhone, FiTruck, FiClock, FiUser, FiSend, FiMessageSquare, FiL
 import { BsShieldCheck, BsLightningCharge } from "react-icons/bs";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 
+const ADMIN_WHATSAPP = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "";
+
 export default function ContactPage() {
   const [form, setForm] = useState({ 
     name: "", 
-    email: "", 
-    phone: "",
+    replyMethod: "telegram",
+    replyHandle: "",
     subject: "", 
     message: ""
   });
@@ -18,6 +20,8 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [siteSettings, setSiteSettings] = useState({});
   const [focusedField, setFocusedField] = useState(null);
+  const [confirmed, setConfirmed] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   useEffect(() => {
     fetch("/api/settings")
@@ -28,19 +32,31 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (honeypot) {
+      toast.error("Spam detected.");
+      return;
+    }
+    if (!confirmed) {
+      toast.error("Please confirm you are a genuine buyer.");
+      return;
+    }
+    if (!form.replyHandle.trim()) {
+      toast.error(`Please enter your ${form.replyMethod === "telegram" ? "Telegram username" : "WhatsApp number"} so we can reply.`);
+      return;
+    }
     setSubmitting(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, confirmed: true }),
       });
       if (res.ok) {
         setSent(true);
         setForm({ 
           name: "", 
-          email: "", 
-          phone: "",
+          replyMethod: "telegram",
+          replyHandle: "",
           subject: "", 
           message: ""
         });
@@ -57,14 +73,6 @@ export default function ContactPage() {
 
   const contactCards = [
     {
-      icon: <FiMail className="w-5 h-5" />,
-      label: "Email Support",
-      value: siteSettings.contactEmail || "orders@etomidateshop.com",
-      desc: "Response within 2 hours",
-      color: "from-[#00d4aa]/20 to-[#00d4aa]/5",
-      href: `mailto:${siteSettings.contactEmail || "orders@etomidateshop.com"}`,
-    },
-    {
       icon: <FaTelegramPlane className="w-5 h-5" />,
       label: "Telegram",
       value: "@chemsolution12mal",
@@ -72,6 +80,16 @@ export default function ContactPage() {
       color: "from-sky-500/20 to-sky-500/5",
       href: "https://t.me/chemsolution12mal",
     },
+    ...(ADMIN_WHATSAPP
+      ? [{
+          icon: <FaWhatsapp className="w-5 h-5" />,
+          label: "WhatsApp",
+          value: "Chat with us",
+          desc: "Message us on WhatsApp",
+          color: "from-green-500/20 to-green-500/5",
+          href: `https://wa.me/${ADMIN_WHATSAPP}`,
+        }]
+      : []),
   ];
 
   const trustBadges = [
@@ -80,15 +98,15 @@ export default function ContactPage() {
     { icon: <FiHeadphones className="w-4 h-4" />, text: "24/7 Support" },
   ];
 
-  const inputCls = "w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-11 pr-4 py-3.5 text-sm transition-all duration-300 placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#00d4aa]/50 focus:border-[#00d4aa]/50 focus:bg-gray-50";
-  const selectCls = "w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl px-4 py-3.5 text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00d4aa]/50 focus:border-[#00d4aa]/50 focus:bg-gray-50 cursor-pointer";
+  const inputCls = "w-full bg-white border border-orange-200 text-gray-800 rounded-xl pl-11 pr-4 py-3.5 text-sm transition-all duration-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/30 focus:border-[#f59e0b]";
+  const selectCls = "w-full bg-white border border-orange-200 text-gray-800 rounded-xl px-4 py-3.5 text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/30 focus:border-[#f59e0b] cursor-pointer";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#fffaf5]">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00d4aa]/5 via-transparent to-transparent" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#00d4aa]/5 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f59e0b]/5 via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#f59e0b]/10 rounded-full blur-[120px]" />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
           <motion.div
@@ -97,12 +115,12 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 bg-[#00d4aa]/10 border border-[#00d4aa]/20 text-[#00d4aa] text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 text-[#f59e0b] text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
               <FiMessageSquare className="w-3.5 h-3.5" />
               Get in Touch
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-              Connect With <span className="text-[#00d4aa]">EtomidateShop</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 leading-tight">
+              Connect With <span className="text-[#f59e0b]">Etomidatesite</span>
             </h1>
             <p className="text-gray-600 text-lg leading-relaxed">
               Premium quality products, exceptional service, and worldwide delivery. Our specialists are ready to assist with your needs.
@@ -123,15 +141,15 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="group relative bg-gray-50 border border-gray-100 rounded-2xl p-5 hover:border-[#00d4aa]/30 transition-all duration-300 cursor-pointer flex-1 min-w-[220px] max-w-[300px]"
+              className="group relative bg-white border border-orange-100 rounded-2xl p-5 hover:border-[#f59e0b]/50 hover:shadow-lg hover:shadow-orange-100/40 transition-all duration-300 cursor-pointer flex-1 min-w-[220px] max-w-[300px]"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
               <div className="relative">
-                <div className="w-10 h-10 bg-[#1a1a1a] border border-gray-200 rounded-xl flex items-center justify-center text-[#00d4aa] mb-3 group-hover:bg-[#00d4aa]/10 group-hover:border-[#00d4aa]/30 transition-all">
+                <div className="w-10 h-10 bg-orange-50 border border-orange-100 rounded-xl flex items-center justify-center text-[#f59e0b] mb-3 group-hover:bg-[#f59e0b]/10 group-hover:border-[#f59e0b]/30 transition-all">
                   {card.icon}
                 </div>
-                <h3 className="text-sm font-bold text-gray-900 mb-0.5">{card.label}</h3>
-                <p className="text-sm text-[#00d4aa] font-medium mb-1">{card.value}</p>
+                <h3 className="text-sm font-bold text-gray-800 mb-0.5">{card.label}</h3>
+                <p className="text-sm text-[#f59e0b] font-medium mb-1">{card.value}</p>
                 <p className="text-xs text-gray-500">{card.desc}</p>
               </div>
             </motion.a>
@@ -152,18 +170,18 @@ export default function ContactPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="bg-gray-50 border border-[#00d4aa]/20 rounded-3xl p-12 text-center"
+                  className="bg-white border border-orange-100 rounded-3xl p-12 text-center"
                 >
-                  <div className="w-20 h-20 bg-[#00d4aa]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FiCheckCircle className="w-10 h-10 text-[#00d4aa]" />
+                  <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FiCheckCircle className="w-10 h-10 text-[#f59e0b]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Message Sent!</h3>
                   <p className="text-gray-600 mb-6 max-w-sm mx-auto">
                     Thank you for reaching out. Our team will get back to you within 48 hours.
                   </p>
                   <button
                     onClick={() => setSent(false)}
-                    className="inline-flex items-center gap-2 bg-[#00d4aa] hover:bg-[#00b894] text-black font-semibold px-6 py-3 rounded-xl transition-all hover:shadow-lg hover:shadow-[#00d4aa]/25"
+                    className="inline-flex items-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:shadow-lg hover:shadow-orange-200/50"
                   >
                     Send Another Message
                     <FiArrowRight className="w-4 h-4" />
@@ -177,57 +195,71 @@ export default function ContactPage() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                   onSubmit={handleSubmit}
-                  className="bg-gray-50 border border-gray-100 rounded-3xl p-8 md:p-10"
+                  className="bg-white border border-orange-100 rounded-3xl p-8 md:p-10"
                 >
-                  <h2 className="text-xl font-bold text-gray-900 mb-1">Send us a message</h2>
-                  <p className="text-sm text-gray-500 mb-8">Fill in the form below and we&apos;ll respond as soon as possible.</p>
+                  <h2 className="text-xl font-bold text-gray-800 mb-1">Send us a message</h2>
+                  <p className="text-sm text-gray-500 mb-8">No email needed — tell us where to reply and we&apos;ll message you privately.</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Full Name *</label>
-                      <div className="relative group">
-                        <FiUser className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "name" ? "text-[#00d4aa]" : "text-gray-600"}`} />
-                        <input
-                          type="text"
-                          placeholder="Your full name"
-                          required
-                          value={form.name}
-                          onFocus={() => setFocusedField("name")}
-                          onBlur={() => setFocusedField(null)}
-                          onChange={(e) => setForm({ ...form, name: e.target.value })}
-                          className={inputCls}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Email Address *</label>
-                      <div className="relative">
-                        <FiMail className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "email" ? "text-[#00d4aa]" : "text-gray-600"}`} />
-                        <input
-                          type="email"
-                          placeholder="your@email.com"
-                          required
-                          value={form.email}
-                          onFocus={() => setFocusedField("email")}
-                          onBlur={() => setFocusedField(null)}
-                          onChange={(e) => setForm({ ...form, email: e.target.value })}
-                          className={inputCls}
-                        />
-                      </div>
+                  <div className="mb-5">
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Name <span className="text-gray-400 font-normal normal-case">(optional)</span></label>
+                    <div className="relative group">
+                      <FiUser className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "name" ? "text-[#f59e0b]" : "text-gray-500"}`} />
+                      <input
+                        type="text"
+                        placeholder="How should we address you?"
+                        value={form.name}
+                        onFocus={() => setFocusedField("name")}
+                        onBlur={() => setFocusedField(null)}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        className={inputCls}
+                      />
                     </div>
                   </div>
 
                   <div className="mb-5">
-                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Phone Number</label>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Where should we reply? *</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                      <button
+                        type="button"
+                        onClick={() => setForm({ ...form, replyMethod: "telegram", replyHandle: "" })}
+                        className={`flex items-center gap-3 rounded-xl border p-4 text-left transition-all ${
+                          form.replyMethod === "telegram" ? "border-sky-500 bg-sky-50 ring-2 ring-sky-500/20" : "border-orange-200 bg-white hover:border-sky-500"
+                        }`}
+                      >
+                        <FaTelegramPlane className="w-6 h-6 text-sky-500" />
+                        <span>
+                          <span className="block text-sm font-bold text-gray-800">Telegram</span>
+                          <span className="block text-xs text-gray-500">Reply via Telegram</span>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setForm({ ...form, replyMethod: "whatsapp", replyHandle: "" })}
+                        className={`flex items-center gap-3 rounded-xl border p-4 text-left transition-all ${
+                          form.replyMethod === "whatsapp" ? "border-[#f59e0b] bg-orange-50 ring-2 ring-[#f59e0b]/20" : "border-orange-200 bg-white hover:border-[#f59e0b]"
+                        }`}
+                      >
+                        <FaWhatsapp className="w-6 h-6 text-[#f59e0b]" />
+                        <span>
+                          <span className="block text-sm font-bold text-gray-800">WhatsApp</span>
+                          <span className="block text-xs text-gray-500">Reply via WhatsApp</span>
+                        </span>
+                      </button>
+                    </div>
                     <div className="relative">
-                      <FiPhone className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "phone" ? "text-[#00d4aa]" : "text-gray-600"}`} />
+                      {form.replyMethod === "telegram" ? (
+                        <FaTelegramPlane className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "replyHandle" ? "text-sky-500" : "text-gray-500"}`} />
+                      ) : (
+                        <FiPhone className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "replyHandle" ? "text-[#f59e0b]" : "text-gray-500"}`} />
+                      )}
                       <input
-                        type="tel"
-                        placeholder="+1 (555) 123-4567"
-                        value={form.phone}
-                        onFocus={() => setFocusedField("phone")}
+                        type={form.replyMethod === "whatsapp" ? "tel" : "text"}
+                        placeholder={form.replyMethod === "telegram" ? "@your_telegram_username" : "+1 234 567 8900"}
+                        required
+                        value={form.replyHandle}
+                        onFocus={() => setFocusedField("replyHandle")}
                         onBlur={() => setFocusedField(null)}
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        onChange={(e) => setForm({ ...form, replyHandle: e.target.value })}
                         className={inputCls}
                       />
                     </div>
@@ -236,7 +268,7 @@ export default function ContactPage() {
                   <div className="mb-5">
                     <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Subject *</label>
                     <div className="relative">
-                      <FiMessageSquare className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "subject" ? "text-[#00d4aa]" : "text-gray-600"}`} />
+                      <FiMessageSquare className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "subject" ? "text-[#f59e0b]" : "text-gray-500"}`} />
                       <input
                         type="text"
                         placeholder="How can we help you?"
@@ -253,7 +285,7 @@ export default function ContactPage() {
                   <div className="mb-8">
                     <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Message *</label>
                     <div className="relative">
-                      <FiSend className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-[#00d4aa]" : "text-gray-600"}`} />
+                      <FiSend className={`absolute left-3.5 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-[#f59e0b]" : "text-gray-500"}`} />
                       <textarea
                         placeholder="Please provide detailed information about your inquiry..."
                         required
@@ -270,11 +302,32 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  
+                  {/* Anti-spam confirmation */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+                  <label className="flex items-start gap-3 p-4 rounded-xl bg-orange-50 border border-orange-100 cursor-pointer mb-4">
+                    <input
+                      type="checkbox"
+                      checked={confirmed}
+                      onChange={(e) => setConfirmed(e.target.checked)}
+                      className="mt-1 w-4 h-4 accent-[#f59e0b]"
+                    />
+                    <span className="text-sm text-gray-600">
+                      I am a genuine buyer/researcher and understand this inquiry will be reviewed before a reply is sent.
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
-                    disabled={submitting}
-                    className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#00d4aa] to-[#059669] hover:from-[#059669] hover:to-[#047857] disabled:opacity-50 text-black font-bold py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4aa]/25 text-base"
+                    disabled={submitting || !confirmed}
+                    className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#f59e0b] to-[#ea7a17] hover:from-[#ea7a17] hover:to-[#c65d0a] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-orange-200/50 text-base"
                   >
                     {submitting ? (
                       <FiLoader className="w-5 h-5 animate-spin" />
@@ -288,7 +341,7 @@ export default function ContactPage() {
                   <div className="flex items-center justify-center gap-6 mt-5">
                     {trustBadges.map((badge) => (
                       <div key={badge.text} className="flex items-center gap-1.5 text-gray-500">
-                        <span className="text-[#00d4aa]">{badge.icon}</span>
+                        <span className="text-[#f59e0b]">{badge.icon}</span>
                         <span className="text-[11px] font-medium">{badge.text}</span>
                       </div>
                     ))}
@@ -305,9 +358,9 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.4 }}
-              className="bg-gray-50 border border-gray-100 rounded-3xl p-8"
+              className="bg-white border border-orange-100 rounded-3xl p-8"
             >
-              <h3 className="text-lg font-bold text-gray-900 mb-5">Common Questions</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-5">Common Questions</h3>
               <div className="space-y-4">
                 {[
                   { q: "How long does shipping take?", a: "Orders are processed within 48h. Standard delivery takes 3–7 business days within Europe." },
@@ -315,8 +368,8 @@ export default function ContactPage() {
                   { q: "Is shipping discreet?", a: "Absolutely. All packages are shipped in plain, unmarked packaging with no product references." },
                   { q: "What payment methods do you accept?", a: "We accept bank transfer, cryptocurrency, and other methods. Details are provided after order confirmation." },
                 ].map((item, i) => (
-                  <div key={i} className="border-b border-[#1a1a1a] pb-4 last:border-0 last:pb-0">
-                    <h4 className="text-sm font-semibold text-[#00d4aa] mb-1">{item.q}</h4>
+                  <div key={i} className="border-b border-orange-100 pb-4 last:border-0 last:pb-0">
+                    <h4 className="text-sm font-semibold text-[#f59e0b] mb-1">{item.q}</h4>
                     <p className="text-xs text-gray-500 leading-relaxed">{item.a}</p>
                   </div>
                 ))}
@@ -328,14 +381,14 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="bg-gradient-to-br from-[#00d4aa]/10 to-[#00d4aa]/5 border border-[#00d4aa]/20 rounded-3xl p-8 text-center"
+              className="bg-gradient-to-br from-orange-50 to-[#fffaf5] border border-orange-100 rounded-3xl p-8 text-center"
             >
-              <div className="w-14 h-14 bg-[#00d4aa]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <FiClock className="w-7 h-7 text-[#00d4aa]" />
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm shadow-orange-100">
+                <FiClock className="w-7 h-7 text-[#f59e0b]" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Fast Response Time</h3>
-              <p className="text-sm text-gray-600 mb-4">Average reply within</p>
-              <div className="text-4xl font-extrabold text-[#00d4aa] mb-1">&lt; 2 Hours</div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Fast Response Time</h3>
+              <p className="text-sm text-gray-500 mb-4">Average reply within</p>
+              <div className="text-4xl font-extrabold text-[#f59e0b] mb-1">&lt; 2 Hours</div>
               <p className="text-xs text-gray-500">during business hours</p>
             </motion.div>
           </div>

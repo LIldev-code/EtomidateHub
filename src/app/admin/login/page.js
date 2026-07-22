@@ -45,19 +45,19 @@ export default function AdminLoginPage() {
         className="w-full max-w-sm"
       >
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-[#00d4aa]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <GiChemicalDrop className="w-7 h-7 text-[#00d4aa]" />
+          <div className="w-14 h-14 bg-[#f59e0b]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <GiChemicalDrop className="w-7 h-7 text-[#f59e0b]" />
           </div>
           <h1 className="text-2xl font-extrabold text-gray-900">Admin Login</h1>
-          <p className="text-sm text-gray-600 mt-1">EtomidateShop Dashboard</p>
+          <p className="text-sm text-gray-600 mt-1">Etomidatesite Dashboard</p>
         </div>
 
-        <form onSubmit={handleLogin} className="bg-gray-100 rounded-2xl border border-gray-200 p-6 space-y-4">
+        <form onSubmit={handleLogin} className="bg-white rounded-2xl border border-orange-100 p-6 space-y-4">
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 bg-red-400/10 border border-red-400/30 text-red-400 text-sm px-4 py-2.5 rounded-lg"
+              className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-500 text-sm px-4 py-2.5 rounded-lg"
             >
               <FiAlertCircle className="w-4 h-4 shrink-0" />
               {error}
@@ -73,7 +73,7 @@ export default function AdminLoginPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full bg-white border border-gray-200 text-gray-900 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 text-gray-900 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b] focus:border-transparent placeholder:text-gray-600"
                 placeholder="admin"
               />
             </div>
@@ -88,7 +88,7 @@ export default function AdminLoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-white border border-gray-200 text-gray-900 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 text-gray-900 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b] focus:border-transparent placeholder:text-gray-600"
                 placeholder="••••••••"
               />
             </div>
@@ -97,7 +97,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-[#00d4aa] hover:bg-[#059669] disabled:bg-[#059669]/50 text-black font-semibold py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-[#00d4aa]/25"
+            className="w-full flex items-center justify-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] disabled:bg-[#ea7a17]/50 text-white font-semibold py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-orange-200/50"
           >
             {loading ? (
               <FiLoader className="w-5 h-5 animate-spin" />

@@ -2,14 +2,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaFlask, FaVial, FaTint } from "react-icons/fa";
+import { FaFlask, FaVial, FaTint, FaAppleAlt } from "react-icons/fa";
 import { FiCheckCircle, FiShoppingBag, FiChevronRight, FiArrowRight, FiStar } from "react-icons/fi";
 import { BsListCheck } from "react-icons/bs";
 
 const categoryIcons = {
-  powder: <FaFlask className="w-16 h-16 text-[#00d4aa]" />,
-  vape: <FaVial className="w-16 h-16 text-[#00d4aa]" />,
-  liquid: <FaTint className="w-16 h-16 text-[#00d4aa]" />,
+  powder: <FaFlask className="w-16 h-16 text-[#f59e0b]" />,
+  vape: <FaVial className="w-16 h-16 text-[#f59e0b]" />,
+  liquid: <FaTint className="w-16 h-16 text-[#f59e0b]" />,
+  flavours: <FaAppleAlt className="w-16 h-16 text-[#f59e0b]" />,
 };
 
 export default function ProductDetailClient({ product }) {
@@ -22,11 +23,11 @@ export default function ProductDetailClient({ product }) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm text-gray-500 mb-8">
-        <Link href="/" className="hover:text-[#00d4aa] transition-colors">Home</Link>
+        <Link href="/" className="hover:text-[#ea7a17] transition-colors">Home</Link>
         <FiChevronRight className="w-3 h-3" />
-        <Link href="/shop" className="hover:text-[#00d4aa] transition-colors">Shop</Link>
+        <Link href="/shop" className="hover:text-[#ea7a17] transition-colors">Shop</Link>
         <FiChevronRight className="w-3 h-3" />
-        <span className="text-[#00d4aa] font-medium">{product.name}</span>
+        <span className="text-[#f59e0b] font-medium">{product.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -35,7 +36,7 @@ export default function ProductDetailClient({ product }) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-2xl flex items-center justify-center h-80 lg:h-[500px] overflow-hidden relative"
+          className="bg-gradient-to-br from-[#fffaf5] to-white border border-orange-100 rounded-2xl flex items-center justify-center h-80 lg:h-[500px] overflow-hidden relative"
         >
           {product.image ? (
             <img
@@ -48,7 +49,7 @@ export default function ProductDetailClient({ product }) {
               <div className="mb-4">
                 {categoryIcons[product.category]}
               </div>
-              <span className="text-sm font-semibold text-[#00d4aa] uppercase tracking-widest">
+              <span className="text-sm font-semibold text-[#f59e0b] uppercase tracking-widest">
                 {product.category}
               </span>
             </div>
@@ -56,7 +57,7 @@ export default function ProductDetailClient({ product }) {
           {/* Stock badge */}
           <div className="absolute top-4 left-4">
             {product.inStock ? (
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white bg-green-500/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#f59e0b]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
                 <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                 In Stock
               </span>
@@ -77,12 +78,12 @@ export default function ProductDetailClient({ product }) {
           {/* Rating */}
           <div className="flex items-center gap-0.5 mb-3">
             {[1,2,3,4,5].map((s) => (
-              <FiStar key={s} className="w-4 h-4 text-[#00d4aa] fill-[#00d4aa]" />
+              <FiStar key={s} className="w-4 h-4 text-[#f59e0b] fill-[#f59e0b]" />
             ))}
             <span className="text-xs text-gray-500 ml-1.5">5.0 (128 reviews)</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4">
             {product.name}
           </h1>
 
@@ -91,14 +92,14 @@ export default function ProductDetailClient({ product }) {
           {/* Specifications */}
           {product.specifications?.length > 0 && (
             <div className="mb-6">
-              <h3 className="flex items-center gap-2 text-sm font-bold text-[#00d4aa] uppercase tracking-wider mb-3">
-                <BsListCheck className="w-4 h-4 text-[#00d4aa]" />
+              <h3 className="flex items-center gap-2 text-sm font-bold text-[#f59e0b] uppercase tracking-wider mb-3">
+                <BsListCheck className="w-4 h-4 text-[#f59e0b]" />
                 Specifications
               </h3>
               <ul className="space-y-2">
                 {product.specifications.map((spec) => (
                   <li key={spec} className="text-sm text-gray-600 flex items-start gap-2.5">
-                    <FiCheckCircle className="w-4 h-4 text-[#00d4aa] shrink-0 mt-0.5" />
+                    <FiCheckCircle className="w-4 h-4 text-[#f59e0b] shrink-0 mt-0.5" />
                     {spec}
                   </li>
                 ))}
@@ -109,7 +110,7 @@ export default function ProductDetailClient({ product }) {
           {/* Size Selector */}
           {product.sizes?.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-3">
                 Choose Quantity
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -119,8 +120,8 @@ export default function ProductDetailClient({ product }) {
                     onClick={() => setSelectedSize(i)}
                     className={`px-5 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                       selectedSize === i
-                        ? "bg-[#00d4aa] text-black border-[#00d4aa] shadow-md shadow-[#00d4aa]/20"
-                        : "bg-white text-gray-700 border-gray-200 hover:border-[#00d4aa]/50"
+                        ? "bg-[#f59e0b] text-white border-[#f59e0b] shadow-md shadow-orange-200/40"
+                        : "bg-white text-gray-600 border-orange-200 hover:border-[#f59e0b] hover:bg-orange-50"
                     }`}
                   >
                     {size.label} — €{size.price.toFixed(2)}
@@ -131,21 +132,21 @@ export default function ProductDetailClient({ product }) {
           )}
 
           {/* Price */}
-          <div className="text-3xl font-extrabold text-[#00d4aa] mb-8">
+          <div className="text-3xl font-extrabold text-[#f59e0b] mb-8">
             €{currentPrice.toFixed(2)}
           </div>
 
           {/* Order Button */}
           <Link
             href={`/order/${product.slug}${currentLabel ? `?size=${encodeURIComponent(currentLabel)}` : ""}`}
-            className="w-full flex items-center justify-center gap-2 bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-[#00d4aa]/25 text-lg"
+            className="w-full flex items-center justify-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] text-white font-bold py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-orange-200/50 text-lg"
           >
             <FiShoppingBag className="w-5 h-5" />
             Order Now — €{currentPrice.toFixed(2)}
             <FiArrowRight className="w-5 h-5" />
           </Link>
           <p className="text-xs text-gray-500 text-center mt-3">
-            You&apos;ll be taken to the order page to complete your purchase.
+            You&apos;ll fill your details and the order will be sent directly to our WhatsApp.
           </p>
         </motion.div>
       </div>

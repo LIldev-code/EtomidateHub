@@ -13,10 +13,10 @@ const links = [
   },
   {
     label: "Email",
-    href: "mailto:orders@etomidateshop.com",
+    href: "mailto:orders@etomidatesite.com",
     icon: <FiMail className="w-5 h-5" />,
-    bg: "bg-[#00d4aa]",
-    hover: "hover:bg-[#00b894]",
+    bg: "bg-[#f59e0b]",
+    hover: "hover:bg-[#ea7a17]",
   },
 ];
 
@@ -31,7 +31,7 @@ export default function SocialFloat() {
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
           open
             ? "bg-[#262626] text-white rotate-0"
-            : "bg-[#00d4aa] text-black hover:bg-[#00b894] hover:shadow-xl hover:shadow-[#00d4aa]/25"
+            : "bg-[#f59e0b] text-black hover:bg-[#ea7a17] hover:shadow-xl hover:shadow-[#f59e0b]/25"
         }`}
       >
         {open ? <FiX className="w-6 h-6" /> : <FiMessageCircle className="w-6 h-6" />}

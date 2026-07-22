@@ -3,16 +3,15 @@ import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
-import { sendOrderNotification } from "@/lib/mailer";
 
 // POST — place a new order (public)
 export async function POST(request) {
   try {
     await dbConnect();
     const body = await request.json();
-    const { productId, productName, size, price, customerName, customerEmail, shippingAddress, message } = body;
+    const { productId, productName, size, price, customerName, customerEmail, customerPhone, shippingAddress, message, orderChannel } = body;
 
-    if (!productId || !customerName || !customerEmail || !shippingAddress) {
+    if (!productId || !customerName || !customerEmail || !customerPhone || !shippingAddress) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -24,14 +23,11 @@ export async function POST(request) {
       price,
       customerName,
       customerEmail,
+      customerPhone,
       shippingAddress,
       message: message || "",
+      orderChannel: orderChannel === "telegram" ? "telegram" : "whatsapp",
       status: "pending",
-    });
-
-    // Send email notification (non-blocking)
-    sendOrderNotification(order).catch((err) => {
-      console.error("[ORDER EMAIL ERROR]", err.message);
     });
 
     return NextResponse.json({ success: true, orderId: order.orderId }, { status: 201 });

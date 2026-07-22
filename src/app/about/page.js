@@ -5,9 +5,9 @@ import AboutClient from "@/components/AboutClient";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "About EtomidateShop — Trusted Etomidate Supplier Since 2019 | EtomidateShop.com",
+  title: "About Etomidatesite — Trusted Etomidate Supplier Since 2019 | Etomidatesite.com",
   description:
-    "EtomidateShop.com has been a trusted name in pharmaceutical-grade etomidate since 2019. Learn about our GMP-certified lab sourcing, rigorous quality testing, and commitment to ≥99.8% purity with every product.",
+    "Etomidatesite.com has been a trusted name in pharmaceutical-grade etomidate since 2019. Learn about our GMP-certified lab sourcing, rigorous quality testing, and commitment to ≥99.8% purity with every product.",
   keywords: [
     "trusted etomidate supplier",
     "reliable etomidate vendor",
@@ -21,25 +21,30 @@ export const metadata = {
     "etomidate 99.8% purity guarantee",
     "discreet etomidate supplier",
     "etomidate worldwide shipping supplier",
-    "about EtomidateShop",
-    "etomidateshop.com review",
+    "about Etomidatesite",
+    "etomidatesite.com review",
   ],
   openGraph: {
-    title: "About EtomidateShop — Quality & Trust Since 2019",
+    title: "About Etomidatesite — Quality & Trust Since 2019",
     description:
-      "GMP-certified lab sourcing, ≥99.8% purity, COA with every order. Learn why researchers worldwide trust EtomidateShop.com.",
-    url: "https://etomidateshop.com/about",
+      "GMP-certified lab sourcing, ≥99.8% purity, COA with every order. Learn why researchers worldwide trust Etomidatesite.com.",
+    url: "https://etomidatesite.com/about",
   },
   alternates: {
-    canonical: "https://etomidateshop.com/about",
+    canonical: "https://etomidatesite.com/about",
   },
 };
 
 export default async function AboutPage() {
-  await dbConnect();
-  let siteSettings = await Settings.findOne({ key: "main" }).lean();
-  if (!siteSettings) {
+  const conn = await dbConnect();
+  let siteSettings;
+  if (!conn) {
     siteSettings = { aboutText: "" };
+  } else {
+    siteSettings = await Settings.findOne({ key: "main" }).lean();
+    if (!siteSettings) {
+      siteSettings = { aboutText: "" };
+    }
   }
 
   return <AboutClient aboutText={siteSettings.aboutText || ""} />;

@@ -9,8 +9,10 @@ const OrderSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     customerName: { type: String, required: true },
     customerEmail: { type: String, required: true },
+    customerPhone: { type: String, required: true },
     shippingAddress: { type: String, required: true },
     message: { type: String, default: "" },
+    orderChannel: { type: String, enum: ["whatsapp", "telegram"], default: "whatsapp" },
     status: {
       type: String,
       enum: ["pending", "confirmed", "shipped", "delivered"],

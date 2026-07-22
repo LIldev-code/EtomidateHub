@@ -4,12 +4,17 @@ import Settings from "@/models/Settings";
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
+const defaultSettings = { siteName: "Etomidatesite", tagline: "", heroSubtitle: "", contactEmail: "orders@etomidatesite.com", contactPhone: "", shippingNote: "", aboutText: "", announcement: "" };
+
 // GET — get site settings (public)
 export async function GET() {
-  await dbConnect();
+  const conn = await dbConnect();
+  if (!conn) {
+    return NextResponse.json({ settings: defaultSettings });
+  }
   let settings = await Settings.findOne({ key: "main" }).lean();
   if (!settings) {
-    settings = { siteName: "EtomidateShop", tagline: "", heroSubtitle: "", contactEmail: "orders@etomidateshop.com", contactPhone: "", shippingNote: "", aboutText: "", announcement: "" };
+    settings = defaultSettings;
   }
   return NextResponse.json({ settings });
 }
@@ -24,7 +29,10 @@ export async function PATCH(request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  await dbConnect();
+  const conn = await dbConnect();
+  if (!conn) {
+    return NextResponse.json({ error: "Database not configured" }, { status: 503 });
+  }
   const body = await request.json();
 
   const allowedKeys = [
