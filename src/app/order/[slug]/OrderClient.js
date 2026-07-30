@@ -52,6 +52,26 @@ function buildWhatsAppText({ product, sizeLabel, price, form }) {
   return encodeURIComponent(lines.join("\n"));
 }
 
+function buildTelegramText({ product, sizeLabel, price, form }) {
+  const lines = [
+    "New Order from Etomidatesite.com",
+    "",
+    `Product: ${product.name}`,
+    `Category: ${product.category}`,
+    `Size: ${sizeLabel}`,
+    `Price: €${Number(price).toFixed(2)}`,
+    "",
+    `Name: ${form.name}`,
+    `Email: ${form.email}`,
+    `Phone: ${form.phone}`,
+    `Shipping Address: ${form.address}`,
+  ];
+  if (form.message?.trim()) {
+    lines.push("", `Message: ${form.message.trim()}`);
+  }
+  return encodeURIComponent(lines.join("\n"));
+}
+
 export default function OrderClient() {
   const { slug } = useParams();
   const searchParams = useSearchParams();
@@ -90,7 +110,11 @@ export default function OrderClient() {
     return `https://wa.me/${ADMIN_WHATSAPP}?text=${text}`;
   }, [product, sizeLabel, currentPrice, form]);
 
-  const telegramUrl = ADMIN_TELEGRAM ? `https://t.me/${ADMIN_TELEGRAM.replace(/^@/, "")}` : "";
+  const telegramUrl = useMemo(() => {
+    if (!ADMIN_TELEGRAM || !product) return "";
+    const text = buildTelegramText({ product, sizeLabel, price: currentPrice, form });
+    return `https://t.me/${ADMIN_TELEGRAM.replace(/^@/, "")}?text=${text}`;
+  }, [product, sizeLabel, currentPrice, form]);
   const selectedChannelUrl = orderChannel === "telegram" ? telegramUrl : whatsappUrl;
   const selectedChannelLabel = orderChannel === "telegram" ? "Telegram" : "WhatsApp";
   const hasSelectedChannel = orderChannel === "telegram" ? Boolean(ADMIN_TELEGRAM) : Boolean(ADMIN_WHATSAPP);
