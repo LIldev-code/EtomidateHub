@@ -10,6 +10,7 @@ import { FaFlask, FaVial, FaTint, FaAppleAlt } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProtectedImage from "@/components/ProtectedImage";
+import SocialFloat from "@/components/SocialFloat";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -599,6 +600,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
           </div>
         </div>
       </section>
+      <SocialFloat />
 
           </>
   );
@@ -684,15 +686,18 @@ function ProductTabs({ products }) {
               {filtered.map((product) => (
                 <div key={product._id || product.slug} className="product-card group">
                   {/* Card Container */}
-                  <div className="relative bg-white border border-orange-100 rounded-3xl overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#f59e0b]/10 hover:-translate-y-1">
-                    
-                    {/* Image Section */}
-                    <div className="relative h-64 overflow-hidden bg-[#fffaf5] image-container no-context-menu">
+                  <div className="relative h-full bg-gradient-to-b from-[#fffaf5] to-white border border-orange-100 rounded-[2rem] p-3 transition-all duration-500 hover:border-[#f59e0b]/40 hover:shadow-[0_20px_60px_-15px_rgba(245,158,11,0.35)] hover:-translate-y-2">
+
+                    {/* Soft glow behind card on hover */}
+                    <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-[#f59e0b]/0 via-[#fbbf24]/0 to-[#ea7a17]/0 group-hover:from-[#f59e0b]/10 group-hover:via-transparent group-hover:to-[#ea7a17]/10 transition-all duration-500 pointer-events-none" />
+
+                    {/* Image Section — rounded inner frame */}
+                    <div className="relative h-60 overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-orange-50 via-[#fffaf5] to-amber-50 image-container no-context-menu">
                       {product.image ? (
                         <ProtectedImage 
                           src={product.image} 
                           alt={product.name} 
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110" 
+                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.08]" 
                         />
                       ) : (
                         <div className="flex items-center justify-center h-full">
@@ -701,20 +706,20 @@ function ProductTabs({ products }) {
                           </div>
                         </div>
                       )}
-                      
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#f59e0b]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
+
+                      {/* Soft bottom fade */}
+                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                       {/* Status Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className={`inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm ${
+                      <div className="absolute top-3 left-3">
+                        <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1.5 rounded-full shadow-sm backdrop-blur-md ${
                           product.inStock 
-                            ? "bg-orange-100 text-orange-700 border border-orange-200" 
-                            : "bg-red-500/10 text-red-400 border border-red-500/20"
+                            ? "bg-white/85 text-emerald-600" 
+                            : "bg-white/85 text-red-500"
                         }`}>
                           {product.inStock ? (
                             <>
-                              <span className="w-2 h-2 bg-[#f59e0b] rounded-full animate-pulse" />
+                              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                               In Stock
                             </>
                           ) : (
@@ -722,68 +727,65 @@ function ProductTabs({ products }) {
                           )}
                         </span>
                       </div>
-                      
-                      {/* Price Badge */}
-                      <div className="absolute top-4 right-4">
-                        <span className="inline-flex items-center text-sm font-bold text-gray-800 bg-white/90 backdrop-blur-sm border border-orange-100 px-3 py-1.5 rounded-full">
-                          From €{product.price?.toFixed(2)}
+
+                      {/* Category chip */}
+                      <div className="absolute top-3 right-3">
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-[#ea7a17] bg-white/85 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+                          {categoryMeta[product.category]?.icon}
+                          {product.category}
+                        </span>
+                      </div>
+
+                      {/* Floating price tag */}
+                      <div className="absolute bottom-3 left-3">
+                        <span className="inline-flex items-baseline gap-1 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-lg shadow-black/5">
+                          <span className="text-lg font-extrabold text-gray-800">
+                            €{(product.sizes?.length > 1 ? product.sizes[0].price : product.price)?.toFixed(2)}
+                          </span>
+                          {product.sizes?.length > 1 && (
+                            <span className="text-[11px] font-semibold text-gray-500">
+                              – €{product.sizes[product.sizes.length - 1].price?.toFixed(2)}
+                            </span>
+                          )}
                         </span>
                       </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="p-6">
-                      {/* Category */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-[#f59e0b]">
-                          {product.category}
-                        </span>
-                        <span className="text-gray-600">•</span>
+                    <div className="px-4 pt-5 pb-4">
+                      {/* Stars + reviews hint */}
+                      <div className="flex items-center gap-1.5 mb-2">
                         <div className="flex items-center gap-0.5">
                           {[1,2,3,4,5].map((s) => (
-                            <FiStar key={s} className="w-3 h-3 text-[#f59e0b] fill-[#f59e0b]" />
+                            <FiStar key={s} className="w-3.5 h-3.5 text-[#f59e0b] fill-[#f59e0b]" />
                           ))}
                         </div>
+                        <span className="text-[11px] font-medium text-gray-400">5.0</span>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#f59e0b] transition-colors duration-300">
+                      <h3 className="text-lg font-extrabold text-gray-800 mb-2 leading-snug group-hover:text-[#ea7a17] transition-colors duration-300">
                         {product.name}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                      <p className="text-gray-500 text-sm leading-relaxed mb-5 line-clamp-2">
                         {product.shortDescription || product.description || "Premium quality pharmaceutical-grade product"}
                       </p>
-
-                      {/* Price Range */}
-                      <div className="mb-4">
-                        <span className="text-2xl font-bold text-[#f59e0b]">
-                          {product.sizes?.length > 1
-                            ? `€${product.sizes[0].price?.toFixed(2)}`
-                            : `€${product.price?.toFixed(2)}`
-                          }
-                        </span>
-                        {product.sizes?.length > 1 && (
-                          <span className="text-sm text-gray-600 ml-2">
-                            — €{product.sizes[product.sizes.length - 1].price?.toFixed(2)}
-                          </span>
-                        )}
-                      </div>
 
                       {/* CTA Button */}
                       <Link
                         href={`/shop/${product.slug}`}
-                        className={`w-full flex items-center justify-center gap-2 font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                        className={`w-full flex items-center justify-center gap-2 font-bold text-sm py-3.5 px-6 rounded-full transition-all duration-300 ${
                           product.inStock
-                            ? "bg-[#f59e0b] hover:bg-[#ea7a17] text-black hover:shadow-lg hover:shadow-[#f59e0b]/25 hover:scale-105"
-                            : "bg-orange-100/70 text-gray-600 cursor-not-allowed"
+                            ? "bg-gradient-to-r from-[#f59e0b] to-[#ea7a17] text-white shadow-md shadow-[#f59e0b]/20 hover:shadow-xl hover:shadow-[#f59e0b]/35 hover:scale-[1.03] active:scale-[0.98]"
+                            : "bg-orange-100/70 text-gray-500 cursor-not-allowed"
                         }`}
                       >
                         {product.inStock ? (
                           <>
                             View Details
-                            <FiArrowRight className="w-4 h-4" />
+                            <FiArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                           </>
                         ) : (
                           "Out of Stock"

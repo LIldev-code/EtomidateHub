@@ -17,7 +17,7 @@ const kpodProducts = [
   {
     slug: "etomidate-vape-kpod-classic",
     name: "Etomidate Vape K-Pod Classic",
-    price: 70,
+    price: 300,
     category: "vape",
     shortDescription: "The original K-Pod featuring our signature etomidate formulation in a sleek, portable design.",
     description: `The Classic K-Pod represents the foundation of our vape lineup. Each pod contains pharmaceutical-grade etomidate formulated specifically for vaporization, delivering consistent potency with every use.
@@ -36,10 +36,9 @@ Compatible with all standard K-Pod devices. Each pod is individually sealed to p
       "Batch-coded for traceability",
     ],
     sizes: [
-      { label: "10 Pods", price: 70 },
-      { label: "25 Pods", price: 160 },
       { label: "50 Pods", price: 300 },
       { label: "100 Pods", price: 550 },
+      { label: "200 Pods", price: 850 },
     ],
     inStock: true,
     image: "",
@@ -47,7 +46,7 @@ Compatible with all standard K-Pod devices. Each pod is individually sealed to p
   {
     slug: "etomidate-vape-kpod-strong",
     name: "Etomidate Vape K-Pod Strong",
-    price: 70,
+    price: 300,
     category: "vape",
     shortDescription: "Enhanced potency K-Pod for experienced users seeking stronger effects.",
     description: `The Strong K-Pod delivers enhanced potency for those who require a more pronounced experience. Formulated with a higher concentration of pharmaceutical-grade etomidate while maintaining the same purity standards.
@@ -66,10 +65,9 @@ Recommended for experienced users who are familiar with etomidate effects and re
       "Enhanced quality control testing",
     ],
     sizes: [
-      { label: "10 Pods", price: 70 },
-      { label: "25 Pods", price: 160 },
       { label: "50 Pods", price: 300 },
       { label: "100 Pods", price: 550 },
+      { label: "200 Pods", price: 850 },
     ],
     inStock: true,
     image: "",
@@ -107,7 +105,7 @@ Perfect for travel, sampling, or situations where carrying a separate device is 
   {
     slug: "etomidate-vape-kpod-menthol",
     name: "Etomidate Vape K-Pod Menthol",
-    price: 70,
+    price: 300,
     category: "vape",
     shortDescription: "Refreshing menthol-infused K-Pod with cooling sensation and smooth vapor.",
     description: `The Menthol K-Pod combines our pharmaceutical-grade etomidate with premium menthol crystals for a refreshing, cooling experience. The menthol is carefully sourced and purified to pharmaceutical standards.
@@ -126,10 +124,9 @@ Popular among users who prefer a cooling, minty experience. The menthol can also
       "Cooling sensation profile",
     ],
     sizes: [
-      { label: "10 Pods", price: 70 },
-      { label: "25 Pods", price: 160 },
       { label: "50 Pods", price: 300 },
       { label: "100 Pods", price: 550 },
+      { label: "200 Pods", price: 850 },
     ],
     inStock: true,
     image: "",
@@ -167,7 +164,7 @@ Also includes a carrying case, cleaning accessories, and detailed usage instruct
   {
     slug: "etomidate-vape-kpod-max",
     name: "Etomidate Vape K-Pod Max",
-    price: 70,
+    price: 300,
     category: "vape",
     shortDescription: "Maximum capacity K-Pod with extended usage and premium coil technology.",
     description: `The Max K-Pod is designed for users who demand extended usage between replacements. With 2.0ml capacity — double the standard size — each pod provides twice the usage time while maintaining portability.
@@ -186,10 +183,9 @@ Despite the larger capacity, the Max maintains compatibility with all standard K
       "Optimized for extended usage cycles",
     ],
     sizes: [
-      { label: "10 Pods", price: 70 },
-      { label: "25 Pods", price: 160 },
       { label: "50 Pods", price: 300 },
       { label: "100 Pods", price: 550 },
+      { label: "200 Pods", price: 850 },
     ],
     inStock: true,
     image: "",

@@ -21,15 +21,15 @@ const Product =
 
 const liquidProducts = [
   {
-    slug: "etomidate-space-oil-classic",
-    name: "Etomidate Space Oil — Classic",
+    slug: "etomidate-space-oil",
+    name: "Space Oil",
     price: 500,
     category: "liquid",
     shortDescription:
-      "Pure pharmaceutical-grade etomidate liquid solution. Our signature Space Oil formula — smooth, clean, and precisely dosed.",
-    description: `Etomidate Space Oil Classic is our flagship liquid etomidate solution, carefully formulated for consistent potency and maximum purity. Each batch is synthesised from pharmaceutical-grade etomidate (CAS 33125-97-2) and prepared in our ISO-certified facility to a verified concentration, ensuring you receive exactly what you order every time.
+      "Pure pharmaceutical-grade etomidate liquid solution. Smooth, clean, and precisely dosed.",
+    description: `Space Oil is our flagship liquid etomidate solution, carefully formulated for consistent potency and maximum purity. Each batch is synthesised from pharmaceutical-grade etomidate (CAS 33125-97-2) and prepared in our ISO-certified facility to a verified concentration, ensuring you receive exactly what you order every time.
 
-The Classic formula uses a refined carrier base that preserves the integrity of the active compound over extended storage periods. It is designed for researchers and professionals who require a reliable, repeatable liquid etomidate source without compromise.
+The refined carrier base preserves the integrity of the active compound over extended storage periods. It is designed for researchers and professionals who require a reliable, repeatable liquid etomidate source without compromise.
 
 Every bottle is individually batch-coded, hermetically sealed, and accompanied by a full Certificate of Analysis (COA) confirming ≥99.8% purity via HPLC testing. Discreet, secure worldwide shipping with delivery within 24–48 hours of dispatch.
 
@@ -54,26 +54,28 @@ Available in 100ml, 250ml, 500ml, and 1000ml volumes to suit both sample testing
     image: "",
   },
   {
-    slug: "etomidate-space-oil-concentrate",
-    name: "Etomidate Space Oil — Concentrate",
+    slug: "etomidate-pg-solution",
+    name: "Etomidate PG Solution",
     price: 500,
     category: "liquid",
     shortDescription:
-      "High-concentration etomidate liquid solution for advanced research applications. Maximum potency in every drop.",
-    description: `Etomidate Space Oil Concentrate is engineered for advanced research applications where a higher-concentration liquid etomidate solution is required. Built on the same pharmaceutical-grade etomidate base (CAS 33125-97-2) as our Classic formula, the Concentrate delivers significantly greater active compound per millilitre — ideal for situations where volume efficiency is critical.
+      "Pharmaceutical-grade etomidate formulated in propylene glycol for stable, predictable research use.",
+    description: `Etomidate PG Solution combines pharmaceutical-grade etomidate (CAS 33125-97-2) with high-purity propylene glycol to create a stable, homogeneous liquid formulation ideal for controlled research applications.
 
-The formulation undergoes an additional purification and concentration stage, producing a solution with enhanced potency while retaining the same exceptional purity standards. The result is a product that goes further, allowing researchers to achieve their required outcomes with smaller volumes.
+Propylene glycol is widely recognised as a safe, effective carrier for pharmaceutical compounds, providing excellent solubility and long-term stability. This solution is prepared under strict aseptic conditions in our ISO-certified facility, with every batch verified for purity, concentration, and sterility.
 
-Supplied in pharmaceutical-grade amber glass bottles with tamper-evident seals. Each order includes a full Certificate of Analysis (COA) detailing batch number, HPLC purity results, and concentration data. Ships discreetly worldwide within 24–48 hours.`,
+Each bottle is hermetically sealed in amber glass to protect against light degradation and supplied with a Certificate of Analysis confirming ≥99.8% etomidate purity. Discreet worldwide shipping within 24–48 hours.
+
+Available in 100ml, 250ml, 500ml, and 1000ml volumes.`,
     specifications: [
       "Purity: ≥99.8% (HPLC verified)",
-      "Form: High-concentration liquid solution",
-      "Potency: Enhanced concentration (2x Classic)",
-      "Carrier: Pharmaceutical-grade solvent base",
-      "Packaging: Amber glass bottle, tamper-evident seal",
+      "Form: Etomidate in propylene glycol solution",
+      "Carrier: Pharmaceutical-grade propylene glycol",
+      "Concentration: Precisely measured per batch",
+      "Packaging: Amber glass, tamper-evident seal",
       "COA included with every order",
       "Batch-coded for full traceability",
-      "Recommended for experienced researchers",
+      "Storage: Keep in a cool, dark place",
     ],
     sizes: [
       { label: "100ml", price: 500 },
@@ -85,26 +87,28 @@ Supplied in pharmaceutical-grade amber glass bottles with tamper-evident seals. 
     image: "",
   },
   {
-    slug: "etomidate-space-oil-dropper",
-    name: "Etomidate Space Oil — Dropper Bottle",
+    slug: "etomidate-lipid-emulsion",
+    name: "Etomidate Lipid Emulsion",
     price: 500,
     category: "liquid",
     shortDescription:
-      "Precision dropper bottle format for controlled, measured etomidate liquid dosing. Perfect for laboratory and research use.",
-    description: `Etomidate Space Oil Dropper Bottle combines the same pharmaceutical-grade etomidate liquid solution with a precision-engineered dropper delivery system, giving researchers complete control over dosing accuracy. Each drop is calibrated for consistent volume, eliminating guesswork and reducing waste during experiments.
+      "Premium etomidate lipid emulsion formulated for enhanced stability and bioavailability.",
+    description: `Etomidate Lipid Emulsion is an advanced liquid formulation that suspends pharmaceutical-grade etomidate (CAS 33125-97-2) within a premium lipid carrier. The emulsion structure protects the active compound and supports consistent dispersion across a range of research settings.
 
-The dropper format is particularly suited to laboratory environments where exact, repeatable measurements are essential. The pharmaceutical-grade etomidate (CAS 33125-97-2) base maintains full potency and purity throughout the product's shelf life when stored correctly.
+Manufactured under rigorous aseptic conditions, each batch is tested for particle size distribution, stability, and etomidate potency to ensure reproducible results. The lipid base is composed of pharmaceutical-grade components selected for purity and compatibility.
 
-Constructed from borosilicate glass with a pharmaceutical-grade pipette dropper, the bottle protects the solution from light and contamination. Supplied batch-coded with a full COA confirming ≥99.8% purity. Shipped discreetly worldwide within 24–48 hours of order.`,
+Supplied in light-protective amber glass with hermetic sealing and a full Certificate of Analysis. Discreet worldwide shipping within 24–48 hours.
+
+Available in 100ml, 250ml, 500ml, and 1000ml volumes.`,
     specifications: [
       "Purity: ≥99.8% (HPLC verified)",
-      "Form: Liquid solution with precision dropper",
-      "Dropper: Pharmaceutical-grade glass pipette",
-      "Bottle: Borosilicate amber glass",
-      "Delivery: Calibrated drop volume for accuracy",
+      "Form: Etomidate lipid emulsion",
+      "Carrier: Pharmaceutical-grade lipid base",
+      "Emulsion particle size: controlled and verified",
+      "Packaging: Amber glass, tamper-evident seal",
       "COA included with every order",
       "Batch-coded for full traceability",
-      "Light-protected, tamper-evident packaging",
+      "Storage: Keep refrigerated; protect from light",
     ],
     sizes: [
       { label: "100ml", price: 500 },
@@ -116,26 +120,28 @@ Constructed from borosilicate glass with a pharmaceutical-grade pipette dropper,
     image: "",
   },
   {
-    slug: "etomidate-space-oil-nasal",
-    name: "Etomidate Space Oil — Nasal Spray",
+    slug: "etomidate-oral-solution",
+    name: "Etomidate Oral Solution",
     price: 500,
     category: "liquid",
     shortDescription:
-      "Pharmaceutical-grade etomidate in a fine-mist nasal spray format. Consistent delivery, precise dosing.",
-    description: `Etomidate Space Oil Nasal Spray presents our pharmaceutical-grade etomidate liquid solution (CAS 33125-97-2) in a fine-mist nasal spray format, providing a convenient and consistently dosed delivery mechanism for research purposes.
+      "Ready-to-use etomidate oral solution with optimised taste and consistent dosing.",
+    description: `Etomidate Oral Solution provides a precisely formulated, ready-to-use liquid etomidate product based on pharmaceutical-grade etomidate (CAS 33125-97-2). The formulation is designed for consistent dosing and improved palatability in research environments.
 
-Each actuation delivers a precisely measured volume, allowing researchers to maintain strict dosing protocols across experiments. The fine-mist atomiser ensures even distribution, maximising research reproducibility. The formulation is pH-adjusted and buffered for compatibility with mucosal applications, using only pharmaceutical-grade excipients.
+Prepared in our ISO-certified facility, every batch is tested for identity, purity, concentration, and microbial limits. The solution is dispensed in amber glass bottles with child-resistant closures and tamper-evident seals to maintain integrity from production to use.
 
-The spray bottle is manufactured from medical-grade materials with a precision pump mechanism rated for thousands of consistent actuations. Every unit is batch-tested and supplied with a full Certificate of Analysis confirming ≥99.8% etomidate purity. Discreet worldwide shipping within 24–48 hours.`,
+Each order includes a Certificate of Analysis confirming ≥99.8% etomidate purity. Discreet worldwide shipping within 24–48 hours.
+
+Available in 100ml, 250ml, 500ml, and 1000ml volumes.`,
     specifications: [
       "Purity: ≥99.8% (HPLC verified)",
-      "Form: Fine-mist nasal spray solution",
-      "Pump: Precision-metered dose atomiser",
-      "Excipients: Pharmaceutical-grade only",
-      "pH: Adjusted and buffered for mucosal use",
+      "Form: Ready-to-use oral solution",
+      "Concentration: Precisely measured per batch",
+      "Flavour profile: Optimised for research use",
+      "Packaging: Amber glass, child-resistant closure",
       "COA included with every order",
       "Batch-coded for full traceability",
-      "Medical-grade spray mechanism",
+      "Storage: Keep in a cool, dark place",
     ],
     sizes: [
       { label: "100ml", price: 500 },
@@ -164,7 +170,17 @@ async function seedLiquids() {
       }
     }
 
-    console.log("\nDone — Liquid (Space Oil) products seeded:");
+    // Remove any other liquid products so the catalog matches this list
+    const keepSlugs = liquidProducts.map((p) => p.slug);
+    const removed = await Product.deleteMany({
+      category: "liquid",
+      slug: { $nin: keepSlugs },
+    });
+    if (removed.deletedCount > 0) {
+      console.log(`Removed ${removed.deletedCount} outdated liquid product(s)`);
+    }
+
+    console.log("\nDone — Liquid products seeded:");
     console.log("  100ml  = €500");
     console.log("  250ml  = €1,250");
     console.log("  500ml  = €2,500");

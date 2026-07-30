@@ -17,7 +17,7 @@ const flavourProducts = [
   {
     slug: "etomidate-flavour-grape",
     name: "Grape",
-    price: 350,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Premium vape flavour infused with sweet grape essence.",
     description: `Our Grape Flavour Vape represents the perfect marriage of pharmaceutical excellence and sensory pleasure, combining our signature pharmaceutical-grade etomidate with the rich, sweet essence of ripe Concord grapes. This exceptional product has been meticulously developed to satisfy the most discerning researchers who refuse to compromise on either quality or experience.
@@ -50,8 +50,6 @@ Whether you're conducting pharmacological research, exploring novel drug deliver
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 65 },
-      { label: "250ml", price: 145 },
       { label: "500ml", price: 270 },
       { label: "1000ml", price: 480 },
     ],
@@ -61,7 +59,7 @@ Whether you're conducting pharmacological research, exploring novel drug deliver
   {
     slug: "etomidate-flavour-raspberry",
     name: "Raspberry",
-    price: 68,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Tart and sweet raspberry flavored vape with authentic berry essence.",
     description: `Our Raspberry Flavour Vape delivers an extraordinary sensory experience that captures the essence of sun-ripened raspberries at the peak of their flavor. The perfect balance of tartness and sweetness creates a sophisticated taste profile that transforms the research experience into something genuinely pleasurable while maintaining the uncompromising pharmaceutical standards that define our entire product line.
@@ -93,8 +91,6 @@ For researchers who value both quality and experience, our Raspberry Flavour Vap
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 65 },
-      { label: "250ml", price: 145 },
       { label: "500ml", price: 270 },
       { label: "1000ml", price: 480 },
     ],
@@ -104,7 +100,7 @@ For researchers who value both quality and experience, our Raspberry Flavour Vap
   {
     slug: "etomidate-flavour-blueberry",
     name: "Blueberry",
-    price: 62,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Rich blueberry flavored etomidate K-Pods with authentic berry taste.",
     description: `Our Blueberry Flavour Vape capture the exquisite essence of wild blueberries harvested at the peak of ripeness, delivering a rich, full-bodied berry experience that elevates pharmaceutical research to new sensory heights. The deep, complex flavor profile of this product reflects our commitment to creating flavored pharmaceuticals that don't merely mask the active ingredient but transform the entire experience into something genuinely enjoyable.
@@ -136,10 +132,8 @@ Whether you're exploring the interaction between pharmaceutical compounds and fl
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 62 },
-      { label: "250ml", price: 140 },
-      { label: "500ml", price: 260 },
-      { label: "1000ml", price: 460 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -147,7 +141,7 @@ Whether you're exploring the interaction between pharmaceutical compounds and fl
   {
     slug: "etomidate-flavour-honeydew",
     name: "Honeydew",
-    price: 58,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Refreshing honeydew melon flavored etomidate K-Pods with cool, crisp taste.",
     description: `Our Honeydew Flavour Vape transport you to a refreshing oasis with every use, capturing the delicate essence of perfectly ripened honeydew melons at the peak of their sweetness. This sophisticated flavor profile combines the light, clean taste of fresh melon with the unmistakable quality of our pharmaceutical-grade etomidate, creating a research experience that is as pleasant as it is precise.
@@ -179,10 +173,8 @@ For researchers seeking a refreshing, light flavor option that doesn't compromis
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 58 },
-      { label: "250ml", price: 130 },
-      { label: "500ml", price: 240 },
-      { label: "1000ml", price: 430 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -190,7 +182,7 @@ For researchers seeking a refreshing, light flavor option that doesn't compromis
   {
     slug: "etomidate-flavour-strawberry-mango",
     name: "Strawberry Mango",
-    price: 68,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Exotic tropical blend of strawberry and mango flavored K-Pods.",
     description: `Tropical paradise meets pharmaceutical precision in our Strawberry Mango Flavour Vape, creating an extraordinary fusion of two beloved fruits that transport your senses to sun-drenched beaches and lush island landscapes. This exotic blend combines the sweet, slightly tart essence of perfectly ripened strawberries with the luscious, creamy tropical notes of authentic mango, resulting in a flavor experience that is truly unique in the world of pharmaceutical research products.
@@ -222,10 +214,8 @@ For researchers seeking an exotic flavor experience that doesn't compromise on p
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 68 },
-      { label: "250ml", price: 155 },
-      { label: "500ml", price: 290 },
-      { label: "1000ml", price: 520 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -233,7 +223,7 @@ For researchers seeking an exotic flavor experience that doesn't compromise on p
   {
     slug: "etomidate-flavour-coke",
     name: "Coke",
-    price: 55,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Classic cola flavored etomidate K-Pods with iconic soda taste.",
     description: `Experience the timeless, beloved taste of classic cola perfectly blended with our premium pharmaceutical-grade etomidate in our Coke Flavour K-Pods. This nostalgic flavor profile captures the essence of the world's most iconic soft drink, combining sweet caramel notes, subtle citrus undertones, and that distinctive cola spice blend with the uncompromising quality of our signature etomidate formulation.
@@ -265,10 +255,8 @@ For researchers who appreciate classic flavors combined with pharmaceutical exce
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 55 },
-      { label: "250ml", price: 125 },
-      { label: "500ml", price: 230 },
-      { label: "1000ml", price: 410 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -276,7 +264,7 @@ For researchers who appreciate classic flavors combined with pharmaceutical exce
   {
     slug: "etomidate-flavour-green-apple",
     name: "Green Apple",
-    price: 52,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Crisp and tangy green apple flavored K-Pods with authentic tartness.",
     description: `Our Green Apple Flavour Vape deliver the invigorating taste of freshly picked Granny Smith apples, capturing that distinctive crisp tartness that makes green apples so refreshingly different from their sweeter red counterparts. This sophisticated flavor profile combines the sharp, mouth-tingling acidity of unripe apple with subtle sweet undertones, creating a complex taste experience that awakens the senses while delivering pharmaceutical-grade etomidate.
@@ -308,10 +296,8 @@ For researchers who appreciate the sophisticated, tart character of genuine gree
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 52 },
-      { label: "250ml", price: 120 },
-      { label: "500ml", price: 220 },
-      { label: "1000ml", price: 400 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -319,7 +305,7 @@ For researchers who appreciate the sophisticated, tart character of genuine gree
   {
     slug: "etomidate-flavour-thai-mango",
     name: "Thai Mango",
-    price: 70,
+    price: 270,
     category: "vape flavours",
     shortDescription: "Authentic Thai mango flavored etomidate K-Pods with exotic tropical sweetness.",
     description: `Experience the extraordinary exotic sweetness of authentic Thai mangoes in our premium K-Pods, a tropical luxury that transports your senses directly to the lush orchards of Southeast Asia where these remarkable fruits achieve their peak intensity. Our Thai Mango Flavour captures the unique, concentrated sweetness that distinguishes Thai mangoes from all other varieties, delivering an authentic taste of tropical paradise combined with uncompromising pharmaceutical-grade etomidate.
@@ -354,10 +340,8 @@ For researchers seeking an exotic tropical flavor experience that authentically 
       "Certificate of Analysis included",
     ],
     sizes: [
-      { label: "100ml", price: 70 },
-      { label: "250ml", price: 160 },
-      { label: "500ml", price: 300 },
-      { label: "1000ml", price: 550 },
+      { label: "500ml", price: 270 },
+      { label: "1000ml", price: 480 },
     ],
     inStock: true,
     image: "",
@@ -393,7 +377,7 @@ async function seedFlavours() {
         slug: { type: String, required: true, unique: true },
         name: { type: String, required: true },
         price: { type: Number, required: true },
-        category: { type: String, enum: ["powder", "vape", "liquid", "flavours"], required: true },
+        category: { type: String, enum: ["powder", "vape", "liquid", "vape flavours"], required: true },
         shortDescription: { type: String, default: "" },
         description: { type: String, default: "" },
         specifications: [{ type: String }],
