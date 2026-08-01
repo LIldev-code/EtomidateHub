@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
+
 import "./globals.css";
 import SiteChrome from "@/components/SiteChrome";
 import ToastProvider from "@/components/ToastProvider";
@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://etomidatesite.com"),
+  metadataBase: new URL("https://etomidatehub.com"),
   title: {
-    default: "Etomidate Site — Premium Powder, K-Pods Vape & Liquid | Etomidatesite.com",
-    template: "%s | Etomidatesite.com",
+    default: "Etomidate Site — Premium Powder, K-Pods Vape & Liquid | Etomidatehub.com",
+    template: "%s | Etomidatehub.com",
   },
   description:
-    "Etomidatesite.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, discreet worldwide shipping within 24h.",
+    "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, discreet worldwide shipping within 24h.",
   keywords: [
     "buy etomidate online",
     "etomidate for sale",
@@ -85,8 +85,8 @@ export const metadata = {
     "buy 16145-71-4",
     "16145-71-4 powder",
     "16145-71-4 for sale",
-    "Etomidatesite",
-    "etomidatesite.com",
+    "Etomidatehub",
+    "etomidatehub.com",
     "space oil",
     "buy space oil",
     "space oil vape",
@@ -107,23 +107,23 @@ export const metadata = {
     "research chemical vape",
     "pharmaceutical vape pods",
   ],
-  authors: [{ name: "Etomidatesite.com" }],
-  creator: "Etomidatesite.com",
-  publisher: "Etomidatesite.com",
+  authors: [{ name: "Etomidatehub.com" }],
+  creator: "Etomidatehub.com",
+  publisher: "Etomidatehub.com",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://etomidatesite.com",
-    siteName: "Etomidatesite.com",
+    url: "https://etomidatehub.com",
+    siteName: "Etomidatehub.com",
     title: "Etomidate Site — Premium Powder, K-Pods Vape & Liquid",
     description:
-      "Etomidatesite.com — Premium etomidate powder, K-Pods vape cartridges & liquid. ≥99.8% purity, COA included, discreet worldwide shipping.",
+      "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid. ≥99.8% purity, COA included, discreet worldwide shipping.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Etomidate Site — Premium Powder, Vape & Liquid",
     description:
-      "Etomidatesite.com — Premium etomidate powder, K-Pods vape cartridges & liquid. Lab-tested ≥99.8% purity. Ships worldwide within 24h.",
+      "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid. Lab-tested ≥99.8% purity. Ships worldwide within 24h.",
   },
   robots: {
     index: true,
@@ -137,7 +137,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: "https://etomidatesite.com",
+    canonical: "https://etomidatehub.com",
   },
   icons: {
     icon: "/favicon.svg",
@@ -158,25 +158,7 @@ export default function RootLayout({ children }) {
         <ImageProtection />
         <ToastProvider />
         <SiteChrome>{children}</SiteChrome>
-        {/* Smartsupp Live Chat script */}
-        <Script id="smartsupp-chat" strategy="afterInteractive">
-          {`
-            var _smartsupp = _smartsupp || {};
-            _smartsupp.key = '7d0690193cfd012b1ac84b87c1a130f346937aba';
-            window.smartsupp||(function(d) {
-              var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-              s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-              c.type='text/javascript';c.charset='utf-8';c.async=true;
-              c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-            })(document);
-          `}
-        </Script>
-        <noscript>
-          Powered by{" "}
-          <a href="https://www.smartsupp.com" target="_blank" rel="noopener noreferrer">
-            Smartsupp
-          </a>
-        </noscript>
+
       </body>
     </html>
   );

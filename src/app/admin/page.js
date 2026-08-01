@@ -47,8 +47,8 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#fffaf5]">
-        <FiLoader className="w-8 h-8 text-[#f59e0b] animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-[#f8faff]">
+        <FiLoader className="w-8 h-8 text-[#00246B] animate-spin" />
       </div>
     );
   }
@@ -66,22 +66,22 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fffaf5] flex">
+    <div className="min-h-screen bg-[#f8faff] flex">
       {/* Sidebar overlay (mobile) */}
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/60 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-orange-100 flex flex-col transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="p-6 border-b border-orange-100 bg-gradient-to-r from-orange-50 to-transparent">
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#CADCFC]/30 flex flex-col transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="p-6 border-b border-[#CADCFC]/30 bg-gradient-to-r from-[#CADCFC]/20 to-transparent">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center">
-              <FiPackage className="w-5 h-5 text-[#f59e0b]" />
+            <div className="w-10 h-10 rounded-xl bg-[#CADCFC]/20 border border-[#CADCFC]/30 flex items-center justify-center">
+              <FiPackage className="w-5 h-5 text-[#00246B]" />
             </div>
             <div>
               <p className="text-sm font-bold text-gray-800">Admin Panel</p>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Etomidatesite</p>
+              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Etomidatehub</p>
             </div>
           </div>
         </div>
@@ -93,19 +93,19 @@ export default function AdminDashboard() {
               onClick={() => { setTab(item.id); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 tab === item.id
-                  ? "bg-orange-50 text-[#f59e0b] border border-orange-200"
-                  : "text-gray-600 hover:text-gray-800 hover:bg-orange-50/50 hover:border hover:border-orange-100 border border-transparent"
+                  ? "bg-[#CADCFC]/20 text-[#00246B] border border-[#CADCFC]/40"
+                  : "text-gray-600 hover:text-gray-800 hover:bg-[#CADCFC]/20 hover:border hover:border-[#CADCFC]/30 border border-transparent"
               }`}
             >
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                tab === item.id ? "bg-[#f59e0b]/20" : "bg-orange-50"
+                tab === item.id ? "bg-[#00246B]/20" : "bg-[#CADCFC]/20"
               }`}>
                 {item.icon}
               </div>
               <span className="flex-1 text-left">{item.label}</span>
               {item.badge > 0 && (
                 <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${
-                  tab === item.id ? "bg-[#f59e0b] text-white" : "bg-orange-100 text-gray-600"
+                  tab === item.id ? "bg-[#00246B] text-white" : "bg-[#CADCFC]/30 text-gray-600"
                 }`}>
                   {item.badge}
                 </span>
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-orange-100">
+        <div className="p-4 border-t border-[#CADCFC]/30">
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 hover:border hover:border-red-200 transition-all duration-200 border border-transparent"
@@ -128,10 +128,10 @@ export default function AdminDashboard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-xl border-b border-orange-100 px-4 lg:px-8 py-4">
+        <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-xl border-b border-[#CADCFC]/30 px-4 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-2.5 rounded-xl hover:bg-orange-50 text-gray-500 transition-colors">
+              <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-2.5 rounded-xl hover:bg-[#CADCFC]/20 text-gray-500 transition-colors">
                 <FiMenu className="w-5 h-5" />
               </button>
               <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
                 <span className="text-gray-800 capitalize font-medium">{tab}</span>
               </div>
             </div>
-            <a href="/" target="_blank" className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#ea7a17] hover:bg-orange-50 px-3 py-2 rounded-xl transition-all duration-200">
+            <a href="/" target="_blank" className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#001a4d] hover:bg-[#CADCFC]/20 px-3 py-2 rounded-xl transition-all duration-200">
               <FiEye className="w-3.5 h-3.5" />
               View Site
             </a>
@@ -163,9 +163,9 @@ export default function AdminDashboard() {
 /* ─── Overview Tab ─── */
 function OverviewTab({ orders, products, messages, revenue, pendingOrders, setTab }) {
   const stats = [
-    { label: "Total Orders", value: orders.length, icon: <FiShoppingCart className="w-5 h-5" />, color: "text-[#f59e0b] bg-[#f59e0b]/10", click: "orders" },
+    { label: "Total Orders", value: orders.length, icon: <FiShoppingCart className="w-5 h-5" />, color: "text-[#00246B] bg-[#00246B]/10", click: "orders" },
     { label: "Pending", value: pendingOrders, icon: <FiClock className="w-5 h-5" />, color: "text-yellow-600 bg-yellow-100", click: "orders" },
-    { label: "Revenue", value: `$${revenue.toFixed(2)}`, icon: <FiDollarSign className="w-5 h-5" />, color: "text-orange-600 bg-orange-100" },
+    { label: "Revenue", value: `$${revenue.toFixed(2)}`, icon: <FiDollarSign className="w-5 h-5" />, color: "text-[#00246B] bg-[#CADCFC]/30" },
     { label: "Products", value: products.length, icon: <FiPackage className="w-5 h-5" />, color: "text-blue-600 bg-blue-100", click: "products" },
     { label: "Messages", value: messages.length, icon: <FiMessageSquare className="w-5 h-5" />, color: "text-purple-600 bg-purple-100", click: "messages" },
   ];
@@ -174,7 +174,7 @@ function OverviewTab({ orders, products, messages, revenue, pendingOrders, setTa
 
   return (
     <div className="space-y-8">
-      <div className="bg-gradient-to-r from-orange-50 to-transparent rounded-2xl p-6 border border-orange-100">
+      <div className="bg-gradient-to-r from-[#CADCFC]/20 to-transparent rounded-2xl p-6 border border-[#CADCFC]/30">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome back</h1>
         <p className="text-sm text-gray-500">Here&apos;s what&apos;s happening with your store today.</p>
       </div>
@@ -185,9 +185,9 @@ function OverviewTab({ orders, products, messages, revenue, pendingOrders, setTa
           <button
             key={s.label}
             onClick={() => s.click && setTab(s.click)}
-            className="bg-white border border-orange-100 rounded-2xl p-5 text-left hover:border-[#f59e0b]/50 hover:shadow-lg hover:shadow-orange-100/50 transition-all duration-300 group relative overflow-hidden"
+            className="bg-white border border-[#CADCFC]/30 rounded-2xl p-5 text-left hover:border-[#00246B]/50 hover:shadow-lg hover:shadow-[#CADCFC]/30 transition-all duration-300 group relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#f59e0b]/5 to-transparent rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500" />
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#00246B]/5 to-transparent rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500" />
             <div className={`w-12 h-12 rounded-xl ${s.color} flex items-center justify-center mb-4 relative z-10`}>
               {s.icon}
             </div>
@@ -198,17 +198,17 @@ function OverviewTab({ orders, products, messages, revenue, pendingOrders, setTa
       </div>
 
       {/* Recent orders */}
-      <div className="bg-white border border-orange-100 rounded-2xl overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-5 border-b border-orange-100 bg-gradient-to-r from-orange-50/50 to-transparent">
+      <div className="bg-white border border-[#CADCFC]/30 rounded-2xl overflow-hidden">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-[#CADCFC]/30 bg-gradient-to-r from-[#CADCFC]/20 to-transparent">
           <h2 className="text-lg font-semibold text-gray-800">Recent Orders</h2>
-          <button onClick={() => setTab("orders")} className="text-xs text-[#f59e0b] hover:bg-orange-50 px-3 py-1.5 rounded-lg transition-all duration-200">View all</button>
+          <button onClick={() => setTab("orders")} className="text-xs text-[#00246B] hover:bg-[#CADCFC]/20 px-3 py-1.5 rounded-lg transition-all duration-200">View all</button>
         </div>
         {recentOrders.length === 0 ? (
           <p className="px-6 py-12 text-sm text-gray-500 text-center">No orders yet</p>
         ) : (
-          <div className="divide-y divide-orange-100">
+          <div className="divide-y divide-[#CADCFC]/30">
             {recentOrders.map((o) => (
-              <div key={o.orderId || o._id} className="flex items-center justify-between px-6 py-4 hover:bg-orange-50/40 transition-colors">
+              <div key={o.orderId || o._id} className="flex items-center justify-between px-6 py-4 hover:bg-[#CADCFC]/20 transition-colors">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-gray-800 truncate mb-1">{o.productName}</p>
                   <p className="text-xs text-gray-500">{o.customerName} · {o.size}</p>
@@ -232,7 +232,7 @@ function StatusBadge({ status }) {
     pending: "bg-gradient-to-r from-yellow-50 to-yellow-100/50 text-yellow-700 border-yellow-200",
     confirmed: "bg-gradient-to-r from-blue-50 to-blue-100/50 text-blue-700 border-blue-200",
     shipped: "bg-gradient-to-r from-purple-50 to-purple-100/50 text-purple-700 border-purple-200",
-    delivered: "bg-gradient-to-r from-orange-50 to-orange-100/50 text-orange-700 border-orange-200",
+    delivered: "bg-gradient-to-r from-[#CADCFC]/20 to-[#CADCFC]/30 text-[#00246B] border-[#CADCFC]/40",
   };
   return (
     <span className={`text-[10px] font-semibold px-3 py-1.5 rounded-full border ${styles[status] || "bg-gradient-to-r from-gray-50 to-gray-100/50 text-gray-700 border-gray-200"}`}>
@@ -264,29 +264,29 @@ function OrdersTab({ orders, onRefresh }) {
       </div>
 
       {orders.length === 0 ? (
-        <div className="bg-white border border-orange-100 rounded-xl py-20 text-center">
+        <div className="bg-white border border-[#CADCFC]/30 rounded-xl py-20 text-center">
           <FiShoppingCart className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           <p className="text-sm text-gray-500">No orders yet</p>
         </div>
       ) : (
         <div className="space-y-3">
           {orders.map((order) => (
-            <div key={order.orderId || order._id} className="bg-white border border-orange-100 rounded-xl p-5 hover:border-orange-300 transition-colors">
+            <div key={order.orderId || order._id} className="bg-white border border-[#CADCFC]/30 rounded-xl p-5 hover:border-[#CADCFC]/50 transition-colors">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono text-gray-500 bg-orange-50 px-2 py-0.5 rounded">{order.orderId}</span>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${order.orderChannel === "telegram" ? "bg-sky-100 text-sky-700" : "bg-orange-100 text-orange-700"}`}>
+                    <span className="text-[10px] font-mono text-gray-500 bg-[#CADCFC]/20 px-2 py-0.5 rounded">{order.orderId}</span>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${order.orderChannel === "telegram" ? "bg-sky-100 text-sky-700" : "bg-[#CADCFC]/30 text-[#00246B]"}`}>
                       {order.orderChannel === "telegram" ? "Telegram" : "WhatsApp"}
                     </span>
                     <StatusBadge status={order.status} />
                   </div>
                   <h3 className="text-sm font-semibold text-gray-800">{order.productName} — {order.size}</h3>
                 </div>
-                <span className="text-lg font-bold text-[#f59e0b]">${order.price?.toFixed(2)}</span>
+                <span className="text-lg font-bold text-[#00246B]">${order.price?.toFixed(2)}</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm mb-4 p-3 bg-orange-50 rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm mb-4 p-3 bg-[#CADCFC]/20 rounded-lg">
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Customer</p>
                   <p className="text-gray-700">{order.customerName}</p>
@@ -313,8 +313,8 @@ function OrdersTab({ orders, onRefresh }) {
                     disabled={order.status === s}
                     className={`text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${
                       order.status === s
-                        ? "bg-[#f59e0b] text-white"
-                        : "bg-orange-50 text-gray-600 hover:text-gray-800 hover:bg-orange-100"
+                        ? "bg-[#00246B] text-white"
+                        : "bg-[#CADCFC]/20 text-gray-600 hover:text-gray-800 hover:bg-[#CADCFC]/30"
                     }`}
                   >
                     {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -405,7 +405,7 @@ function ProductsTab({ products, onRefresh }) {
     }
   };
 
-  const inputCls = "w-full bg-white border border-orange-200 text-gray-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/30 focus:border-[#f59e0b] placeholder-gray-400";
+  const inputCls = "w-full bg-white border border-[#CADCFC]/40 text-gray-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00246B]/30 focus:border-[#00246B] placeholder-gray-400";
 
   return (
     <div className="space-y-6">
@@ -413,7 +413,7 @@ function ProductsTab({ products, onRefresh }) {
         <h1 className="text-xl font-bold text-gray-800">Products</h1>
         <button
           onClick={() => setShowAdd(!showAdd)}
-          className="flex items-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors"
+          className="flex items-center gap-2 bg-[#00246B] hover:bg-[#001a4d] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors"
         >
           {showAdd ? <FiX className="w-4 h-4" /> : <FiPlus className="w-4 h-4" />}
           {showAdd ? "Cancel" : "Add Product"}
@@ -422,8 +422,8 @@ function ProductsTab({ products, onRefresh }) {
 
       {/* Add Product Form */}
       {showAdd && (
-        <div className="bg-white border border-orange-200 rounded-xl p-6 space-y-4">
-          <h2 className="text-sm font-semibold text-[#ea7a17] flex items-center gap-2">
+        <div className="bg-white border border-[#CADCFC]/40 rounded-xl p-6 space-y-4">
+          <h2 className="text-sm font-semibold text-[#001a4d] flex items-center gap-2">
             <FiPlus className="w-4 h-4" /> New Product
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -473,7 +473,7 @@ function ProductsTab({ products, onRefresh }) {
             <label className="block text-xs text-gray-600 mb-1.5">Product Image</label>
             <ImageUploader currentImage={addForm.image} onUploaded={(url) => setAddForm({ ...addForm, image: url })} />
           </div>
-          <button onClick={handleAdd} className="flex items-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors">
+          <button onClick={handleAdd} className="flex items-center gap-2 bg-[#00246B] hover:bg-[#001a4d] text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors">
             <FiSave className="w-4 h-4" /> Create Product
           </button>
         </div>
@@ -482,7 +482,7 @@ function ProductsTab({ products, onRefresh }) {
       {/* Product list */}
       <div className="space-y-3">
         {products.map((product) => (
-          <div key={product.slug || product._id} className="bg-white border border-orange-100 rounded-xl hover:border-orange-300 transition-colors">
+          <div key={product.slug || product._id} className="bg-white border border-[#CADCFC]/30 rounded-xl hover:border-[#CADCFC]/50 transition-colors">
             {editing === product.slug ? (
               <div className="p-5 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -532,10 +532,10 @@ function ProductsTab({ products, onRefresh }) {
                   <ImageUploader currentImage={form.image} onUploaded={(url) => setForm({ ...form, image: url })} />
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => saveEdit(product.slug)} className="flex items-center gap-1.5 bg-[#f59e0b] hover:bg-[#ea7a17] text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors">
+                  <button onClick={() => saveEdit(product.slug)} className="flex items-center gap-1.5 bg-[#00246B] hover:bg-[#001a4d] text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors">
                     <FiSave className="w-4 h-4" /> Save
                   </button>
-                  <button onClick={() => setEditing(null)} className="flex items-center gap-1.5 bg-orange-50 hover:bg-orange-100 text-gray-600 text-sm font-medium px-5 py-2 rounded-lg transition-colors">
+                  <button onClick={() => setEditing(null)} className="flex items-center gap-1.5 bg-[#CADCFC]/20 hover:bg-[#CADCFC]/30 text-gray-600 text-sm font-medium px-5 py-2 rounded-lg transition-colors">
                     <FiX className="w-4 h-4" /> Cancel
                   </button>
                 </div>
@@ -544,18 +544,18 @@ function ProductsTab({ products, onRefresh }) {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 gap-4">
                 <div className="flex items-center gap-4 min-w-0">
                   {product.image ? (
-                    <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg object-cover border border-orange-100 shrink-0" />
+                    <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg object-cover border border-[#CADCFC]/30 shrink-0" />
                   ) : (
-                    <div className="w-12 h-12 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-[#CADCFC]/20 border border-[#CADCFC]/30 flex items-center justify-center shrink-0">
                       <span className="text-[10px] text-gray-500 uppercase">{product.category?.slice(0, 3)}</span>
                     </div>
                   )}
                   <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="text-sm font-semibold text-gray-800">{product.name}</h3>
-                    <span className="text-[10px] uppercase tracking-wider text-gray-500 bg-orange-50 px-2 py-0.5 rounded">{product.category}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-500 bg-[#CADCFC]/20 px-2 py-0.5 rounded">{product.category}</span>
                     {product.inStock ? (
-                      <span className="flex items-center gap-1 text-[10px] text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full">
+                      <span className="flex items-center gap-1 text-[10px] text-[#00246B] bg-[#CADCFC]/30 px-2 py-0.5 rounded-full">
                         <FiCheckCircle className="w-2.5 h-2.5" /> In Stock
                       </span>
                     ) : (
@@ -565,11 +565,11 @@ function ProductsTab({ products, onRefresh }) {
                     )}
                   </div>
                   <p className="text-xs text-gray-500 truncate">{product.shortDescription}</p>
-                  <p className="text-sm font-bold text-[#f59e0b] mt-1">From €{product.price?.toFixed(2)}</p>
+                  <p className="text-sm font-bold text-[#00246B] mt-1">From €{product.price?.toFixed(2)}</p>
                 </div>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <button onClick={() => startEdit(product)} className="flex items-center gap-1.5 bg-orange-50 hover:bg-orange-100 text-gray-600 text-xs font-medium px-3 py-2 rounded-lg transition-colors">
+                  <button onClick={() => startEdit(product)} className="flex items-center gap-1.5 bg-[#CADCFC]/20 hover:bg-[#CADCFC]/30 text-gray-600 text-xs font-medium px-3 py-2 rounded-lg transition-colors">
                     <FiEdit2 className="w-3.5 h-3.5" /> Edit
                   </button>
                   <button onClick={() => deleteProduct(product.slug)} className="flex items-center gap-1.5 text-red-500 hover:bg-red-50 text-xs font-medium px-3 py-2 rounded-lg transition-colors">
@@ -591,14 +591,14 @@ function MessagesTab({ messages }) {
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-gray-800">Messages</h1>
       {messages.length === 0 ? (
-        <div className="bg-white border border-orange-100 rounded-xl py-20 text-center">
+        <div className="bg-white border border-[#CADCFC]/30 rounded-xl py-20 text-center">
           <FiMail className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           <p className="text-sm text-gray-500">No messages yet</p>
         </div>
       ) : (
         <div className="space-y-3">
           {messages.map((msg) => (
-            <div key={msg._id} className="bg-white border border-orange-100 rounded-xl p-5 hover:border-orange-300 transition-colors">
+            <div key={msg._id} className="bg-white border border-[#CADCFC]/30 rounded-xl p-5 hover:border-[#CADCFC]/50 transition-colors">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                 <h3 className="text-sm font-semibold text-gray-800">{msg.subject}</h3>
                 <span className="text-[10px] text-gray-500">{new Date(msg.createdAt).toLocaleString()}</span>
@@ -609,7 +609,7 @@ function MessagesTab({ messages }) {
                 {msg.replyMethod && msg.replyMethod !== "none" ? (
                   <>
                     <span>·</span>
-                    <span className={`font-semibold px-2 py-0.5 rounded-full ${msg.replyMethod === "telegram" ? "bg-sky-100 text-sky-700" : "bg-orange-100 text-orange-700"}`}>
+                    <span className={`font-semibold px-2 py-0.5 rounded-full ${msg.replyMethod === "telegram" ? "bg-sky-100 text-sky-700" : "bg-[#CADCFC]/30 text-[#00246B]"}`}>
                       {msg.replyMethod === "telegram" ? "Telegram" : "WhatsApp"}
                     </span>
                     <span className="font-mono text-gray-700">{msg.replyHandle}</span>
@@ -644,7 +644,7 @@ function SettingsTab({ settings, onRefresh }) {
     setSaving(false);
   };
 
-  const inputCls = "w-full bg-white border border-orange-200 text-gray-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/30 focus:border-[#f59e0b] placeholder-gray-400";
+  const inputCls = "w-full bg-white border border-[#CADCFC]/40 text-gray-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00246B]/30 focus:border-[#00246B] placeholder-gray-400";
 
   const fields = [
     { key: "siteName", label: "Site Name", type: "text" },
@@ -660,7 +660,7 @@ function SettingsTab({ settings, onRefresh }) {
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-gray-800">Site Settings</h1>
-      <div className="bg-white border border-orange-100 rounded-xl p-6 space-y-5">
+      <div className="bg-white border border-[#CADCFC]/30 rounded-xl p-6 space-y-5">
         {fields.map((f) => (
           <div key={f.key}>
             <label className="block text-xs text-gray-600 mb-1.5">{f.label}</label>
@@ -674,7 +674,7 @@ function SettingsTab({ settings, onRefresh }) {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 bg-[#f59e0b] hover:bg-[#ea7a17] text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-orange-200/50 disabled:opacity-50"
+          className="flex items-center gap-2 bg-[#00246B] hover:bg-[#001a4d] text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-[#CADCFC]/40 disabled:opacity-50"
         >
           {saving ? <FiLoader className="w-4 h-4 animate-spin" /> : <FiSave className="w-4 h-4" />}
           Save Settings
@@ -723,7 +723,7 @@ function ImageUploader({ currentImage, onUploaded }) {
     <div className="space-y-3">
       {currentImage ? (
         <div className="relative inline-block">
-          <img src={currentImage} alt="Product" className="h-24 w-24 object-cover rounded-lg border border-orange-100" />
+          <img src={currentImage} alt="Product" className="h-24 w-24 object-cover rounded-lg border border-[#CADCFC]/30" />
           <button
             type="button"
             onClick={() => onUploaded("")}
@@ -739,19 +739,19 @@ function ImageUploader({ currentImage, onUploaded }) {
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
         className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors cursor-pointer ${
-          dragOver ? "border-[#f59e0b] bg-orange-50" : "border-orange-200 hover:border-[#f59e0b]"
+          dragOver ? "border-[#00246B] bg-[#CADCFC]/20" : "border-[#CADCFC]/40 hover:border-[#00246B]"
         }`}
       >
         {uploading ? (
           <div className="flex flex-col items-center gap-2">
-            <FiLoader className="w-6 h-6 text-[#f59e0b] animate-spin" />
+            <FiLoader className="w-6 h-6 text-[#00246B] animate-spin" />
             <p className="text-xs text-gray-500">Uploading...</p>
           </div>
         ) : (
           <label className="flex flex-col items-center gap-2 cursor-pointer">
             <FiUpload className="w-6 h-6 text-gray-400" />
             <p className="text-xs text-gray-500">
-              <span className="text-[#f59e0b] font-medium">Click to upload</span> or drag & drop
+              <span className="text-[#00246B] font-medium">Click to upload</span> or drag & drop
             </p>
             <p className="text-[10px] text-gray-400">JPG, PNG, WebP, GIF, SVG · Max 5MB</p>
             <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />

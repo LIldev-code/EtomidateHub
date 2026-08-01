@@ -4,7 +4,7 @@ import Settings from "@/models/Settings";
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
-const defaultSettings = { siteName: "Etomidatesite", tagline: "", heroSubtitle: "", contactEmail: "orders@etomidatesite.com", contactPhone: "", shippingNote: "", aboutText: "", announcement: "" };
+const defaultSettings = { siteName: "Etomidatehub", tagline: "", heroSubtitle: "", contactEmail: "orders@etomidatehub.com", contactPhone: "", shippingNote: "", aboutText: "", announcement: "" };
 
 // GET — get site settings (public)
 export async function GET() {

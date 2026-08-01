@@ -9,13 +9,13 @@ export default function ToastProvider() {
         duration: 3000,
         style: {
           background: "#ffffff",
-          border: "1px solid #f59e0b",
+          border: "1px solid #00246B",
           color: "#374151",
           fontSize: "14px",
           borderRadius: "12px",
           padding: "12px 16px",
         },
-        success: { iconTheme: { primary: "#f59e0b", secondary: "#fff" } },
+        success: { iconTheme: { primary: "#00246B", secondary: "#fff" } },
         error: { iconTheme: { primary: "#ef4444", secondary: "#fff" } },
       }}
     />

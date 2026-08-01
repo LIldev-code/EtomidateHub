@@ -1,16 +1,16 @@
 @import "tailwindcss";
 :root {
-  --color-primary: #f59e0b;
-  --color-primary-light: #fbbf24;
-  --color-primary-dark: #ea7a17;
-  --color-bg: #fffaf5;
+  --color-primary: #00246B;
+  --color-primary-light: #CADCFC;
+  --color-primary-dark: #001a4d;
+  --color-bg: #f8faff;
   --color-surface: #ffffff;
-  --color-surface-elevated: #fff4e8;
+  --color-surface-elevated: #eef4ff;
   --color-muted: #6b7280;
   --color-text: #374151;
   --color-heading: #1f2937;
-  --color-border: rgba(234, 122, 23, 0.16);
-  --color-border-strong: rgba(234, 122, 23, 0.28);
+  --color-border: rgba(0, 36, 107, 0.12);
+  --color-border-strong: rgba(0, 36, 107, 0.24);
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
@@ -18,7 +18,7 @@
 
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: var(--color-bg);
+  background: #ffffff;
   color: var(--color-text);
 }
 
@@ -139,14 +139,14 @@ img:hover {
 }
 
 .hero-gradient-bg {
-  background: #fffaf5;
+  background: #f8faff;
 }
 
 .hero-purple-glow {
   background: 
-    radial-gradient(ellipse at 20% 50%, rgba(245, 158, 11, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(234, 122, 23, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(0, 36, 107, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(202, 220, 252, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(0, 36, 107, 0.08) 0%, transparent 50%);
 }
 
 .animated-blob {
@@ -165,23 +165,23 @@ img:hover {
 /* Custom carousel slide backgrounds */
 .slide-bg-1 {
   background:
-    radial-gradient(circle at 12% 24%, rgba(245, 158, 11, 0.18), transparent 27%),
-    radial-gradient(circle at 86% 76%, rgba(234, 122, 23, 0.12), transparent 32%),
-    #fffaf5;
+    radial-gradient(circle at 12% 24%, rgba(0, 36, 107, 0.12), transparent 27%),
+    radial-gradient(circle at 86% 76%, rgba(202, 220, 252, 0.3), transparent 32%),
+    #f8faff;
 }
 
 .slide-bg-2 {
   background:
-    radial-gradient(circle at 82% 18%, rgba(245, 158, 11, 0.2), transparent 28%),
-    radial-gradient(circle at 28% 84%, rgba(251, 191, 36, 0.12), transparent 30%),
-    #fffdf9;
+    radial-gradient(circle at 82% 18%, rgba(0, 36, 107, 0.14), transparent 28%),
+    radial-gradient(circle at 28% 84%, rgba(202, 220, 252, 0.25), transparent 30%),
+    #f5f8ff;
 }
 
 .slide-bg-3 {
   background:
-    radial-gradient(circle at 18% 76%, rgba(234, 122, 23, 0.14), transparent 30%),
-    radial-gradient(circle at 78% 30%, rgba(245, 158, 11, 0.17), transparent 28%),
-    #fff8f0;
+    radial-gradient(circle at 18% 76%, rgba(0, 36, 107, 0.1), transparent 30%),
+    radial-gradient(circle at 78% 30%, rgba(202, 220, 252, 0.3), transparent 28%),
+    #f0f5ff;
 }
 
 

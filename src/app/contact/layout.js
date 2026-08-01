@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Contact Etomidatesite — Order Support & Bulk Inquiries | Etomidatesite.com",
+  title: "Contact Etomidatehub — Order Support & Bulk Inquiries | Etomidatehub.com",
   description:
-    "Contact Etomidatesite.com for orders, inquiries, or support. We respond within 24 hours. Reach us via email at orders@etomidatesite.com for any questions about our etomidate products, shipping, or bulk orders.",
+    "Contact Etomidatehub.com for orders, inquiries, or support. We respond within 24 hours. Reach us via email at orders@etomidatehub.com for any questions about our etomidate products, shipping, or bulk orders.",
   keywords: [
     "contact etomidate supplier",
     "etomidate order support",
@@ -13,18 +13,18 @@ export const metadata = {
     "etomidate K-Pods order inquiry",
     "etomidate powder order support",
     "etomidate liquid order help",
-    "Etomidatesite contact",
-    "orders@etomidatesite.com",
+    "Etomidatehub contact",
+    "orders@etomidatehub.com",
     "etomidate 24 hour support",
   ],
   openGraph: {
-    title: "Contact Etomidatesite — Orders & Support",
+    title: "Contact Etomidatehub — Orders & Support",
     description:
-      "Have questions? Contact us at orders@etomidatesite.com for product inquiries, order support, or bulk pricing. We reply within 24 hours.",
-    url: "https://etomidatesite.com/contact",
+      "Have questions? Contact us at orders@etomidatehub.com for product inquiries, order support, or bulk pricing. We reply within 24 hours.",
+    url: "https://etomidatehub.com/contact",
   },
   alternates: {
-    canonical: "https://etomidatesite.com/contact",
+    canonical: "https://etomidatehub.com/contact",
   },
 };
 

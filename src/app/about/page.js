@@ -5,9 +5,9 @@ import AboutClient from "@/components/AboutClient";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "About Etomidatesite — Trusted Etomidate Supplier Since 2019 | Etomidatesite.com",
+  title: "About Etomidatehub — Trusted Etomidate Supplier Since 2019 | Etomidatehub.com",
   description:
-    "Etomidatesite.com has been a trusted name in pharmaceutical-grade etomidate since 2019. Learn about our GMP-certified lab sourcing, rigorous quality testing, and commitment to ≥99.8% purity with every product.",
+    "Etomidatehub.com has been a trusted name in pharmaceutical-grade etomidate since 2019. Learn about our GMP-certified lab sourcing, rigorous quality testing, and commitment to ≥99.8% purity with every product.",
   keywords: [
     "trusted etomidate supplier",
     "reliable etomidate vendor",
@@ -21,17 +21,17 @@ export const metadata = {
     "etomidate 99.8% purity guarantee",
     "discreet etomidate supplier",
     "etomidate worldwide shipping supplier",
-    "about Etomidatesite",
-    "etomidatesite.com review",
+    "about Etomidatehub",
+    "etomidatehub.com review",
   ],
   openGraph: {
-    title: "About Etomidatesite — Quality & Trust Since 2019",
+    title: "About Etomidatehub — Quality & Trust Since 2019",
     description:
-      "GMP-certified lab sourcing, ≥99.8% purity, COA with every order. Learn why researchers worldwide trust Etomidatesite.com.",
-    url: "https://etomidatesite.com/about",
+      "GMP-certified lab sourcing, ≥99.8% purity, COA with every order. Learn why researchers worldwide trust Etomidatehub.com.",
+    url: "https://etomidatehub.com/about",
   },
   alternates: {
-    canonical: "https://etomidatesite.com/about",
+    canonical: "https://etomidatehub.com/about",
   },
 };
 

@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Etomidate Site — Premium Powder, K-Pods Vape & Liquid",
   description:
-    "Etomidatesite.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, fast discreet worldwide shipping within 24h.",
+    "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, fast discreet worldwide shipping within 24h.",
   keywords: [
     "buy etomidate online",
     "etomidate for sale",
@@ -49,19 +49,19 @@ export const metadata = {
   openGraph: {
     title: "Etomidate Site — Premium Powder, Vape & Liquid",
     description:
-      "Etomidatesite.com — Premium etomidate powder, K-Pods vape cartridges & liquid. ≥99.8% purity, lab-tested with COA. Fast discreet shipping worldwide.",
-    url: "https://etomidatesite.com",
-    siteName: "Etomidatesite.com",
+      "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid. ≥99.8% purity, lab-tested with COA. Fast discreet shipping worldwide.",
+    url: "https://etomidatehub.com",
+    siteName: "Etomidatehub.com",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Etomidate Site — Premium Powder, Vape & Liquid",
     description:
-      "Etomidatesite.com — Premium etomidate powder, K-Pods vape & liquid. ≥99.8% purity, lab-tested, COA included. Ships worldwide within 24h.",
+      "Etomidatehub.com — Premium etomidate powder, K-Pods vape & liquid. ≥99.8% purity, lab-tested, COA included. Ships worldwide within 24h.",
   },
   alternates: {
-    canonical: "https://etomidatesite.com",
+    canonical: "https://etomidatehub.com",
   },
   robots: {
     index: true,
@@ -76,7 +76,7 @@ export default async function Home() {
     const siteSettings = {
       announcement: "",
       heroSubtitle: "",
-      siteName: "Etomidatesite",
+      siteName: "Etomidatehub",
       tagline: "",
     };
     return <HomeClient products={[]} siteSettings={siteSettings} />;
@@ -100,7 +100,7 @@ export default async function Home() {
   const siteSettings = {
     announcement: raw?.announcement || "",
     heroSubtitle: raw?.heroSubtitle || "",
-    siteName: raw?.siteName || "Etomidatesite",
+    siteName: raw?.siteName || "Etomidatehub",
     tagline: raw?.tagline || "",
   };
 
