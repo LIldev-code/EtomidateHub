@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Message from "@/models/Message";
-import { sendContactNotification } from "@/lib/mailer";
-import { sendContactTelegramNotification } from "@/lib/telegram";
 
 export async function POST(request) {
   try {
@@ -26,10 +24,6 @@ export async function POST(request) {
       subject: subject || "General Inquiry",
       message,
     });
-
-    // Fire-and-forget notifications — don't block the response if they fail
-    sendContactNotification({ name, replyMethod: method, replyHandle, subject, message });
-    sendContactTelegramNotification({ name, replyMethod: method, replyHandle, subject, message });
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch {

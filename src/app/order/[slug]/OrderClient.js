@@ -53,6 +53,7 @@ function buildWhatsAppText({ product, sizeLabel, price, form }) {
 }
 
 function buildTelegramText({ product, sizeLabel, price, form }) {
+  if (!product) return "";
   const lines = [
     "New Order from Etomidatehub.com",
     "",
@@ -113,7 +114,8 @@ export default function OrderClient() {
   const telegramUrl = useMemo(() => {
     if (!ADMIN_TELEGRAM || !product) return "";
     const text = buildTelegramText({ product, sizeLabel, price: currentPrice, form });
-    return `https://t.me/${ADMIN_TELEGRAM.replace(/^@/, "")}?text=${text}`;
+    const username = ADMIN_TELEGRAM.replace(/^@/, "");
+    return `https://t.me/${username}?text=${text}`;
   }, [product, sizeLabel, currentPrice, form]);
   const selectedChannelUrl = orderChannel === "telegram" ? telegramUrl : whatsappUrl;
   const selectedChannelLabel = orderChannel === "telegram" ? "Telegram" : "WhatsApp";
