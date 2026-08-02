@@ -48,8 +48,8 @@ export default function HomeClient({ products, siteSettings = {} }) {
     {
       title: "Global Discreet Delivery",
       subtitle: "Shipped worldwide in unmarked packaging within 48 hours. Professional support available 24/7.",
-      cta: "Contact Us",
-      href: "/contact",
+      cta: "Shop Now",
+      href: "/shop",
       image: "/uploads/hub4.jpeg",
     },
     {

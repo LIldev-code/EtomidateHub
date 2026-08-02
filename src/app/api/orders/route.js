@@ -3,6 +3,8 @@ import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { sendOrderNotification } from "@/lib/mailer";
+import { sendOrderTelegramNotification } from "@/lib/telegram";
 
 // POST — place a new order (public)
 export async function POST(request) {
@@ -29,6 +31,10 @@ export async function POST(request) {
       orderChannel: orderChannel === "telegram" ? "telegram" : "whatsapp",
       status: "pending",
     });
+
+    // Fire-and-forget notifications — don't block the response if they fail
+    sendOrderNotification(order);
+    sendOrderTelegramNotification(order);
 
     return NextResponse.json({ success: true, orderId: order.orderId }, { status: 201 });
   } catch (err) {
