@@ -12,7 +12,7 @@ const OrderSchema = new mongoose.Schema(
     customerPhone: { type: String, required: true },
     shippingAddress: { type: String, required: true },
     message: { type: String, default: "" },
-    orderChannel: { type: String, enum: ["whatsapp", "telegram"], default: "whatsapp" },
+    orderChannel: { type: String, enum: ["email", "telegram"], default: "email" },
     status: {
       type: String,
       enum: ["pending", "confirmed", "shipped", "delivered"],

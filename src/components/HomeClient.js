@@ -33,7 +33,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
   const carouselSlides = [
     {
       title: "Premium Research Compounds",
-      subtitle: "Lab-verified etomidate products with ≥99.8% purity. Browse, select, and order directly via WhatsApp.",
+      subtitle: "Lab-verified etomidate products with 99.8% purity. Browse, select, and order directly via WhatsApp.",
       cta: "Browse Products",
       href: "/shop",
       image: "/uploads/hub.jpeg",

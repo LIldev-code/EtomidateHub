@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-import { FaFlask, FaVial, FaTint, FaAppleAlt, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { FaFlask, FaVial, FaTint, FaAppleAlt, FaTelegramPlane } from "react-icons/fa";
 import {
   FiCheckCircle,
   FiUser,
@@ -22,7 +22,6 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 
-const ADMIN_WHATSAPP = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "";
 const ADMIN_TELEGRAM = process.env.NEXT_PUBLIC_ADMIN_TELEGRAM || "";
 
 const categoryIcons = {
@@ -31,26 +30,6 @@ const categoryIcons = {
   liquid: <FaTint className="w-10 h-10 text-[#00246B]" />,
   flavours: <FaAppleAlt className="w-10 h-10 text-[#00246B]" />,
 };
-
-function buildWhatsAppText({ product, sizeLabel, price, form }) {
-  const lines = [
-    "*New Order from Etomidatehub.com*",
-    "",
-    `*Product:* ${product.name}`,
-    `*Category:* ${product.category}`,
-    `*Size:* ${sizeLabel}`,
-    `*Price:* €${Number(price).toFixed(2)}`,
-    "",
-    `*Name:* ${form.name}`,
-    `*Email:* ${form.email}`,
-    `*Phone:* ${form.phone}`,
-    `*Shipping Address:* ${form.address}`,
-  ];
-  if (form.message?.trim()) {
-    lines.push("", `*Message:* ${form.message.trim()}`);
-  }
-  return encodeURIComponent(lines.join("\n"));
-}
 
 function buildTelegramText({ product, sizeLabel, price, form }) {
   if (!product) return "";
@@ -81,7 +60,7 @@ export default function OrderClient() {
   const [selectedSize, setSelectedSize] = useState(0);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [orderChannel, setOrderChannel] = useState("whatsapp");
+  const [orderChannel, setOrderChannel] = useState("email");
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "", message: "" });
   const [confirmed, setConfirmed] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -105,21 +84,15 @@ export default function OrderClient() {
   const sizeLabel = product?.sizes?.[selectedSize]?.label || "Standard";
   const currentPrice = product?.sizes?.[selectedSize]?.price || product?.price || 0;
 
-  const whatsappUrl = useMemo(() => {
-    if (!ADMIN_WHATSAPP || !product) return "";
-    const text = buildWhatsAppText({ product, sizeLabel, price: currentPrice, form });
-    return `https://wa.me/${ADMIN_WHATSAPP}?text=${text}`;
-  }, [product, sizeLabel, currentPrice, form]);
-
   const telegramUrl = useMemo(() => {
     if (!ADMIN_TELEGRAM || !product) return "";
     const text = buildTelegramText({ product, sizeLabel, price: currentPrice, form });
     const username = ADMIN_TELEGRAM.replace(/^@/, "");
     return `https://t.me/${username}?text=${text}`;
   }, [product, sizeLabel, currentPrice, form]);
-  const selectedChannelUrl = orderChannel === "telegram" ? telegramUrl : whatsappUrl;
-  const selectedChannelLabel = orderChannel === "telegram" ? "Telegram" : "WhatsApp";
-  const hasSelectedChannel = orderChannel === "telegram" ? Boolean(ADMIN_TELEGRAM) : Boolean(ADMIN_WHATSAPP);
+  const selectedChannelUrl = orderChannel === "telegram" ? telegramUrl : "";
+  const selectedChannelLabel = orderChannel === "telegram" ? "Telegram" : "Email";
+  const hasSelectedChannel = orderChannel === "telegram" ? Boolean(ADMIN_TELEGRAM) : true;
 
   const handleOrder = async (e) => {
     e.preventDefault();
@@ -160,8 +133,12 @@ export default function OrderClient() {
       });
       if (res.ok) {
         setOrderPlaced(true);
-        toast.success(`Order request saved. Opening ${selectedChannelLabel}...`);
-        window.open(selectedChannelUrl, "_blank", "noopener,noreferrer");
+        if (orderChannel === "telegram") {
+          toast.success(`Order request saved. Opening ${selectedChannelLabel}...`);
+          window.open(selectedChannelUrl, "_blank", "noopener,noreferrer");
+        } else {
+          toast.success("Order sent! We've received your request.");
+        }
       } else {
         toast.error("Failed to save order. Please try again.");
       }
@@ -204,9 +181,11 @@ export default function OrderClient() {
         >
           <div className="bg-white border border-[#CADCFC]/30 rounded-3xl p-10">
             <div className="w-20 h-20 bg-[#CADCFC]/20 rounded-full flex items-center justify-center mx-auto mb-5">
-              {orderChannel === "telegram" ? <FaTelegramPlane className="w-10 h-10 text-sky-500" /> : <FaWhatsapp className="w-10 h-10 text-[#00246B]" />}
+              {orderChannel === "telegram" ? <FaTelegramPlane className="w-10 h-10 text-sky-500" /> : <FiCheckCircle className="w-10 h-10 text-[#00246B]" />}
             </div>
-            <h1 className="text-2xl font-extrabold text-gray-800 mb-2">Order Sent to {selectedChannelLabel}</h1>
+            <h1 className="text-2xl font-extrabold text-gray-800 mb-2">
+              {orderChannel === "telegram" ? "Order Sent to Telegram" : "Order Sent!"}
+            </h1>
             <p className="text-gray-600 mb-2">
               Thank you, <span className="font-semibold text-gray-900">{form.name}</span>.
             </p>
@@ -215,18 +194,20 @@ export default function OrderClient() {
               <span className="font-semibold text-gray-900">
                 {product.name} — {sizeLabel}
               </span>{" "}
-              has been saved. If {selectedChannelLabel} did not open, use the button below to contact us directly.
+              has been saved. {orderChannel === "telegram" ? "If Telegram did not open, use the button below to contact us directly." : "Our team has received your request by email and will reach out to you shortly with payment instructions."}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href={selectedChannelUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#00246B] hover:bg-[#001a4d] text-white font-bold px-8 py-3 rounded-xl transition-all"
-              >
-                {orderChannel === "telegram" ? <FaTelegramPlane className="w-5 h-5" /> : <FaWhatsapp className="w-5 h-5" />}
-                Open {selectedChannelLabel}
-              </a>
+              {orderChannel === "telegram" && (
+                <a
+                  href={selectedChannelUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#00246B] hover:bg-[#001a4d] text-white font-bold px-8 py-3 rounded-xl transition-all"
+                >
+                  <FaTelegramPlane className="w-5 h-5" />
+                  Open Telegram
+                </a>
+              )}
               <Link
                 href="/shop"
                 className="inline-flex items-center justify-center gap-2 border border-[#CADCFC]/40 hover:border-[#00246B] text-gray-700 font-semibold px-8 py-3 rounded-xl transition-all"
@@ -261,10 +242,10 @@ export default function OrderClient() {
           Back to product
         </Link>
 
-        {!ADMIN_WHATSAPP && !ADMIN_TELEGRAM && (
+        {!ADMIN_TELEGRAM && (
           <div className="mb-6 p-4 rounded-xl bg-yellow-50 border border-yellow-200 text-yellow-700 text-sm flex items-start gap-3">
             <FiAlertCircle className="w-5 h-5 shrink-0" />
-            <span>No order channel is set. Add <code className="font-mono bg-yellow-100 px-1 rounded">NEXT_PUBLIC_ADMIN_WHATSAPP</code> or <code className="font-mono bg-yellow-100 px-1 rounded">NEXT_PUBLIC_ADMIN_TELEGRAM</code> to your environment variables.</span>
+            <span>Telegram ordering is not set up. Add <code className="font-mono bg-yellow-100 px-1 rounded">NEXT_PUBLIC_ADMIN_TELEGRAM</code> to your environment variables, or use the Email option.</span>
           </div>
         )}
 
@@ -351,16 +332,15 @@ export default function OrderClient() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button
                     type="button"
-                    onClick={() => setOrderChannel("whatsapp")}
-                    disabled={!ADMIN_WHATSAPP}
+                    onClick={() => setOrderChannel("email")}
                     className={`flex items-center gap-3 rounded-xl border p-4 text-left transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
-                      orderChannel === "whatsapp" ? "border-[#00246B] bg-[#CADCFC]/20 ring-2 ring-[#00246B]/20" : "border-[#CADCFC]/40 bg-white hover:border-[#00246B]"
+                      orderChannel === "email" ? "border-[#00246B] bg-[#CADCFC]/20 ring-2 ring-[#00246B]/20" : "border-[#CADCFC]/40 bg-white hover:border-[#00246B]"
                     }`}
                   >
-                    <FaWhatsapp className="w-6 h-6 text-[#00246B]" />
+                    <FiMail className="w-6 h-6 text-[#00246B]" />
                     <span>
-                      <span className="block text-sm font-bold text-gray-800">WhatsApp</span>
-                      <span className="block text-xs text-gray-500">Send a direct message</span>
+                      <span className="block text-sm font-bold text-gray-800">Email</span>
+                      <span className="block text-xs text-gray-500">We'll email you order details</span>
                     </span>
                   </button>
                   <button
@@ -477,13 +457,17 @@ export default function OrderClient() {
                 ) : orderChannel === "telegram" ? (
                   <FaTelegramPlane className="w-5 h-5" />
                 ) : (
-                  <FaWhatsapp className="w-5 h-5" />
+                  <FiMail className="w-5 h-5" />
                 )}
-                {submitting ? `Opening ${selectedChannelLabel}...` : `Send Order to ${selectedChannelLabel} — €${currentPrice.toFixed(2)}`}
+                {submitting
+                  ? (orderChannel === "telegram" ? `Opening ${selectedChannelLabel}...` : "Sending Order...")
+                  : `Send Order via ${selectedChannelLabel} — €${currentPrice.toFixed(2)}`}
               </button>
 
               <p className="text-xs text-gray-500 text-center">
-                Your order details are saved securely before {selectedChannelLabel} opens.
+                {orderChannel === "telegram"
+                  ? `Your order details are saved securely before ${selectedChannelLabel} opens.`
+                  : "Your order details are saved securely and emailed to our team."}
               </p>
             </form>
           </div>

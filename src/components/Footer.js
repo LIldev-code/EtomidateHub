@@ -73,7 +73,7 @@ export default function Footer() {
                   <FaWhatsapp className="w-4 h-4" />
                 </a>
               )}
-              <a href="mailto:orders@etomidatehub.com" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#CADCFC] hover:bg-white/20 hover:text-white transition-all">
+              <a href="mailto:purchase@etomidatehub.com" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#CADCFC] hover:bg-white/20 hover:text-white transition-all">
                 <FiMail className="w-4 h-4" />
               </a>
             </div>

@@ -277,7 +277,7 @@ function OrdersTab({ orders, onRefresh }) {
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-[10px] font-mono text-gray-500 bg-[#CADCFC]/20 px-2 py-0.5 rounded">{order.orderId}</span>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${order.orderChannel === "telegram" ? "bg-sky-100 text-sky-700" : "bg-[#CADCFC]/30 text-[#00246B]"}`}>
-                      {order.orderChannel === "telegram" ? "Telegram" : "WhatsApp"}
+                      {order.orderChannel === "telegram" ? "Telegram" : "Email"}
                     </span>
                     <StatusBadge status={order.status} />
                   </div>

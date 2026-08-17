@@ -19,15 +19,16 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL("https://etomidatehub.com"),
   title: {
-    default: "Etomidatehub — Premium Powder, K-Pods Vape & Liquid | Etomidatehub.com",
+    default: "Etomidatehub — Etomidate, Etomidatestore, Premium Powder, K-Pods Vape & Liquid | Etomidatehub.com",
     template: "%s | Etomidatehub.com",
   },
   description:
-    "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, discreet worldwide shipping within 24h.",
+    "Etomidatehub.com — Etomidate, Etomidatestore, Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, discreet worldwide shipping within 24h.",
   keywords: [
     // Brand
     "Etomidatehub",
     "etomidatehub.com",
+    "Etomidate",
 
     // Buying intent — general
     "buy etomidate online",
@@ -178,20 +179,20 @@ export default function RootLayout({ children }) {
         <ToastProvider />
         <SiteChrome>{children}</SiteChrome>
 
-        {/* Smartsupp Live Chat script */}
-        <Script id="smartsupp-chat" type="text/javascript" strategy="afterInteractive">
+        {/* Tawk.to Live Chat script */}
+        <Script id="tawkto-chat" type="text/javascript" strategy="afterInteractive">
           {`
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '8bcda0bf8338c5147cb994e5d7cb0426cba616fa';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a838ded5981892f72ddeca7/1k08u4q79';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
           `}
         </Script>
-        <noscript dangerouslySetInnerHTML={{ __html: 'Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a>' }} />
       </body>
     </html>
   );
