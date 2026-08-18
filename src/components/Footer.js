@@ -62,6 +62,10 @@ export default function Footer() {
             <p className="text-sm text-[#CADCFC]/80 leading-relaxed mb-6">
               Your trusted source for premium research compounds. Lab-verified purity, discreet shipping worldwide.
             </p>
+            <a href="mailto:purchase@etomidatehub.com" className="inline-flex items-center gap-2 text-sm text-[#CADCFC] hover:text-white transition-colors mb-6">
+              <FiMail className="w-4 h-4" />
+              purchase@etomidatehub.com
+            </a>
             <div className="flex items-center gap-3">
               {ADMIN_TELEGRAM && (
                 <a href={`https://t.me/${ADMIN_TELEGRAM.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#CADCFC] hover:bg-white/20 hover:text-white transition-all">
@@ -73,9 +77,6 @@ export default function Footer() {
                   <FaWhatsapp className="w-4 h-4" />
                 </a>
               )}
-              <a href="mailto:purchase@etomidatehub.com" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#CADCFC] hover:bg-white/20 hover:text-white transition-all">
-                <FiMail className="w-4 h-4" />
-              </a>
             </div>
           </div>
 
