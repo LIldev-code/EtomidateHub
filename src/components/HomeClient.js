@@ -503,7 +503,10 @@ function ProductTabs({ products }) {
   const [activeTab, setActiveTab] = useState(categories[0] || "powder");
   const gridRef = useRef(null);
 
-  const filtered = products.filter((p) => p.category === activeTab).slice(0, 6);
+  const filtered = (activeTab === "vape" 
+    ? products.filter((p) => p.category === activeTab).reverse() 
+    : products.filter((p) => p.category === activeTab)
+  ).slice(0, 6);
 
   useEffect(() => {
     if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);

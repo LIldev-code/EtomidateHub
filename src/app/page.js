@@ -6,9 +6,9 @@ import HomeClient from "@/components/HomeClient";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Etomidatehub — Premium Powder, K-Pods Vape & Liquid",
+  title: "Etomidatehub — Etomidate, Etomidatestore, Premium Powder, K-Pods Vape & Liquid",
   description:
-    "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, fast discreet worldwide shipping within 24h.",
+    "Etomidatehub.com — Etomidate, Etomidatestore, Premium etomidate powder, K-Pods vape cartridges & liquid solutions. Lab-tested ≥99.8% purity. COA certified, fast discreet worldwide shipping within 24h.",
   keywords: [
     // Buying intent — general
     "buy etomidate online",
@@ -80,7 +80,7 @@ export const metadata = {
     "etomidate bulk discount",
   ],
   openGraph: {
-    title: "Etomidatehub — Premium Powder, Vape & Liquid",
+    title: "Etomidatehub — Etomidate, Etomidatestore, Premium Powder, Vape & Liquid",
     description:
       "Etomidatehub.com — Premium etomidate powder, K-Pods vape cartridges & liquid. ≥99.8% purity, lab-tested with COA. Fast discreet shipping worldwide.",
     url: "https://etomidatehub.com",
