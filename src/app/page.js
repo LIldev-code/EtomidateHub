@@ -103,39 +103,43 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const conn = await dbConnect();
-  
-  if (!conn) {
-    const siteSettings = {
-      announcement: "",
-      heroSubtitle: "",
-      siteName: "Etomidatehub",
-      tagline: "",
-    };
-    return <HomeClient products={[]} siteSettings={siteSettings} />;
-  }
-  const productsRaw = await Product.find({}).lean();
-  const products = productsRaw.map((p) => ({
-    _id: p._id.toString(),
-    name: p.name || "",
-    slug: p.slug || "",
-    price: p.price || 0,
-    category: p.category || "",
-    shortDescription: p.shortDescription || "",
-    description: p.description || "",
-    specifications: p.specifications || [],
-    sizes: (p.sizes || []).map((s) => ({ label: s.label, price: s.price })),
-    inStock: p.inStock ?? true,
-    image: p.image || "",
-  }));
-
-  let raw = await Settings.findOne({ key: "main" }).lean();
-  const siteSettings = {
-    announcement: raw?.announcement || "",
-    heroSubtitle: raw?.heroSubtitle || "",
-    siteName: raw?.siteName || "Etomidatehub",
-    tagline: raw?.tagline || "",
+  let products = [];
+  let siteSettings = {
+    announcement: "",
+    heroSubtitle: "",
+    siteName: "Etomidatehub",
+    tagline: "",
   };
+
+  try {
+    const conn = await dbConnect();
+    if (conn) {
+      const productsRaw = await Product.find({}).lean();
+      products = productsRaw.map((p) => ({
+        _id: p._id.toString(),
+        name: p.name || "",
+        slug: p.slug || "",
+        price: p.price || 0,
+        category: p.category || "",
+        shortDescription: p.shortDescription || "",
+        description: p.description || "",
+        specifications: p.specifications || [],
+        sizes: (p.sizes || []).map((s) => ({ label: s.label, price: s.price })),
+        inStock: p.inStock ?? true,
+        image: p.image || "",
+      }));
+
+      let raw = await Settings.findOne({ key: "main" }).lean();
+      siteSettings = {
+        announcement: raw?.announcement || "",
+        heroSubtitle: raw?.heroSubtitle || "",
+        siteName: raw?.siteName || "Etomidatehub",
+        tagline: raw?.tagline || "",
+      };
+    }
+  } catch (error) {
+    console.error("Home page data fetch failed:", error.message);
+  }
 
   return <HomeClient products={products} siteSettings={siteSettings} />;
 }

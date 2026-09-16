@@ -192,7 +192,19 @@ export default function HomeClient({ products, siteSettings = {} }) {
 
           {/* Card slider */}
           <div className="relative">
-            <div className="flex gap-4 overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-5 items-stretch overflow-hidden">
+              {/* Video card */}
+              <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden bg-[#00246B]">
+                <video
+                  src="/uploads/WhatsApp%20Video%202026-09-16%20at%2007.08.10.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={slideIndex}
@@ -200,42 +212,21 @@ export default function HomeClient({ products, siteSettings = {} }) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full grid md:grid-cols-2 gap-5 items-stretch"
+                  className="flex flex-col justify-center bg-white/5 border border-white/10 rounded-2xl p-8"
                 >
-                  {/* Image card */}
-                  <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden">
-                    <Image
-                      src={slide.image}
-                      alt={slide.title}
-                      fill
-                      className="object-cover"
-                      priority={slideIndex === 0}
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#00246B]/50 to-transparent" />
-                    {/* Image badge */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm text-[#00246B] text-xs font-bold px-3 py-1.5 rounded-full">
-                      <BsShieldCheck className="w-3.5 h-3.5" />
-                      COA Certified
-                    </div>
-                  </div>
-
-                  {/* Content card */}
-                  <div className="flex flex-col justify-center bg-white/5 border border-white/10 rounded-2xl p-8">
-                    <h2 className="text-2xl font-bold text-white mb-3">
-                      {slide.title}
-                    </h2>
-                    <p className="text-[#CADCFC]/90 leading-relaxed mb-6">
-                      {slide.subtitle}
-                    </p>
-                    <Link
-                      href={slide.href}
-                      className="inline-flex items-center gap-2 bg-white text-[#00246B] font-bold px-6 py-3 rounded-lg text-sm transition-all hover:shadow-lg hover:shadow-white/15 hover:-translate-y-0.5 self-start"
-                    >
-                      {slide.cta}
-                      <FiArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
+                  <h2 className="text-2xl font-bold text-white mb-3">
+                    {slide.title}
+                  </h2>
+                  <p className="text-[#CADCFC]/90 leading-relaxed mb-6">
+                    {slide.subtitle}
+                  </p>
+                  <Link
+                    href={slide.href}
+                    className="inline-flex items-center gap-2 bg-white text-[#00246B] font-bold px-6 py-3 rounded-lg text-sm transition-all hover:shadow-lg hover:shadow-white/15 hover:-translate-y-0.5 self-start"
+                  >
+                    {slide.cta}
+                    <FiArrowRight className="w-4 h-4" />
+                  </Link>
                 </motion.div>
               </AnimatePresence>
             </div>
