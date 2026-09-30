@@ -12,6 +12,7 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/shop", label: "Shop" },
     { href: "/about", label: "About" },
+    { href: "/lab-verification", label: "Lab Verification" },
   ];
 
   const menuVariants = {

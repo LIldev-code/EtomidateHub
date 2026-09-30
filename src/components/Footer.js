@@ -125,6 +125,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/lab-verification" className="text-sm text-[#CADCFC]/80 hover:text-white transition-colors">
+                  COA &amp; HPLC Documentation
+                </Link>
+              </li>
+              <li>
                 <Link href="/shop" className="text-sm text-[#CADCFC]/80 hover:text-white transition-colors">
                   Shop
                 </Link>

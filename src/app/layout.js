@@ -164,7 +164,7 @@ export const metadata = {
     apple: "/favicon.svg",
   },
   verification: {
-    google: "6uz5n6ngf_ozH4xgFtl0Clt_Tm2OBYScFmgYVpqS5gk",
+    google: "9WVSUG3oRkfNtW6PCDlfin1PF_Eub1TrW9ssb1puVSw",
   },
 };
 
@@ -178,6 +178,12 @@ export default function RootLayout({ children }) {
         <ImageProtection />
         <ToastProvider />
         <SiteChrome>{children}</SiteChrome>
+
+        {/* Shown.io metrics */}
+        <Script
+          src="https://shown.io/metrics/eK3DDdp63n"
+          strategy="afterInteractive"
+        />
 
         {/* Tawk.to Live Chat script */}
         <Script id="tawkto-chat" type="text/javascript" strategy="afterInteractive">
