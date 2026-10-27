@@ -1,16 +1,11 @@
 "use client";
 
-import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 
 const ADMIN_TELEGRAM = process.env.NEXT_PUBLIC_ADMIN_TELEGRAM || "";
-const ADMIN_WHATSAPP = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "";
 
 const telegramUrl = ADMIN_TELEGRAM
   ? `https://t.me/${ADMIN_TELEGRAM.replace(/^@/, "")}`
-  : "";
-
-const whatsappUrl = ADMIN_WHATSAPP
-  ? `https://wa.me/${ADMIN_WHATSAPP}`
   : "";
 
 const links = [
@@ -20,13 +15,6 @@ const links = [
     icon: <FaTelegramPlane className="w-6 h-6" />,
     bg: "bg-[#0088cc]",
     hover: "hover:bg-[#0077b5]",
-  },
-  ADMIN_WHATSAPP && {
-    label: "WhatsApp",
-    href: whatsappUrl,
-    icon: <FaWhatsapp className="w-6 h-6" />,
-    bg: "bg-[#25D366]",
-    hover: "hover:bg-[#1ebd5a]",
   },
 ].filter(Boolean);
 

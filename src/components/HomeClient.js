@@ -33,7 +33,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
   const carouselSlides = [
     {
       title: "Premium Research Compounds",
-      subtitle: "Lab-verified etomidate products with 99.8% purity. Browse, select, and order directly via WhatsApp.",
+      subtitle: "Lab-verified etomidate products with 99.8% purity. Browse, select, and order directly via Telegram.",
       cta: "Browse Products",
       href: "/shop",
       image: "/uploads/hub.jpeg",
@@ -95,7 +95,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
     "@type": "WebSite",
     name: "Etomidatehub.com",
     url: "https://etomidatehub.com",
-    description: "Research product information, available quantities, and direct WhatsApp ordering.",
+    description: "Research product information, available quantities, and direct Telegram ordering.",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://etomidatehub.com/shop?q={search_term_string}",
@@ -301,7 +301,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
               { 
                 icon: <BsHeadset className="w-6 h-6" />, 
                 title: "24/7 Support", 
-                sub: "Real humans via Telegram & WhatsApp" 
+                sub: "Real humans via Telegram & email" 
               },
             ].map((b, i) => (
               <motion.div
@@ -441,7 +441,7 @@ export default function HomeClient({ products, siteSettings = {} }) {
               {
                 icon: <FiMail className="w-6 h-6" />,
                 title: "Place Your Order",
-                desc: "Message us on Telegram or WhatsApp to confirm details and arrange payment.",
+                desc: "Message us on Telegram or email to confirm details and arrange payment.",
               },
               {
                 icon: <FiCheckCircle className="w-6 h-6" />,

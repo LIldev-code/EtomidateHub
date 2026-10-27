@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { FiMail, FiTruck, FiArrowRight, FiShield, FiGlobe, FiClock } from "react-icons/fi";
-import { FaFlask, FaVial, FaTint, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { FaFlask, FaVial, FaTint, FaTelegramPlane } from "react-icons/fa";
 import { BsShieldCheck } from "react-icons/bs";
 
 const ADMIN_TELEGRAM = process.env.NEXT_PUBLIC_ADMIN_TELEGRAM || "";
-const ADMIN_WHATSAPP = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "";
 
 export default function Footer() {
   return (
@@ -72,11 +71,6 @@ export default function Footer() {
                   <FaTelegramPlane className="w-4 h-4" />
                 </a>
               )}
-              {ADMIN_WHATSAPP && (
-                <a href={`https://wa.me/${ADMIN_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#CADCFC] hover:bg-white/20 hover:text-white transition-all">
-                  <FaWhatsapp className="w-4 h-4" />
-                </a>
-              )}
             </div>
           </div>
 
@@ -142,7 +136,7 @@ export default function Footer() {
             <div className="rounded-2xl bg-white/5 border border-white/10 p-6">
               <h4 className="text-sm font-bold text-white mb-2">Ready to Order?</h4>
               <p className="text-xs text-[#CADCFC]/70 leading-relaxed mb-4">
-                Browse our catalog, select your products, and reach out via Telegram or WhatsApp to place your order.
+                Browse our catalog, select your products, and reach out via Telegram or email to place your order.
               </p>
               <Link
                 href="/shop"

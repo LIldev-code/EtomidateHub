@@ -146,7 +146,7 @@ export default function ProductDetailClient({ product }) {
             <FiArrowRight className="w-5 h-5" />
           </Link>
           <p className="text-xs text-gray-500 text-center mt-3">
-            You&apos;ll fill your details and the order will be sent directly to our WhatsApp.
+            You&apos;ll fill your details and the order will be sent directly to us via Telegram or email.
           </p>
         </motion.div>
       </div>
